@@ -1,115 +1,112 @@
 package def;
 import java.io.File;
-import java.io.IOException;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 public class MatrixCluster {
-    public static void main(String[] args) {
+    public static void main(String args[]) {
+        
+        MatrixCluster2 cluster = new MatrixCluster2();
+        char[][] grid = ReadMatrixFromFile.readMatrixFromFile("BattleShipMatrix.txt");
 
-        int[][] matrix = null;
+        // for (int i = 0; i < grid.length; i++) {
+        //     for (int j = 0; j < grid[i].length; j++) {
+        //         System.out.print(grid[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
+        //print the matrix to check 
 
-        try {
-            matrix = readBooleanMatrix("BattleshipMatrix.txt");
-        } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
-        }
-    
-        boolean[][] bolMat = convertBinaryToBoolean(matrix);
 
-        int numClusters = countClusters(bolMat);
-        System.out.println("Number of clusters: " + numClusters);
+        int result = cluster.numIslands(grid);
+        System.out.println("Number of cluster: " + result);
+
     }
+}
 
-    public static int[][] readBooleanMatrix(String filename) throws IOException {
-        // Open the file for reading
-        File file = new File(filename);
-        Scanner scanner = new Scanner(file);
+class MatrixCluster2{
+    public int numIslands (char[][] grid){
+        int totalIslands = 0;
+        int rowLen = grid.length;
+        int colLen = grid[0].length;
 
-        // Determine the dimensions of the matrix
-        int numRows = 0;
-        int numCols = 0;
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine().trim();
-            if (line.isEmpty()) {
-                continue;
-            }
-            numRows++;
-            String[] tokens = line.split("\\s+");
-            numCols = tokens.length;
-        }
+        boolean[][] visited = new boolean[rowLen][colLen];
+        
+        int[] rowList = {1, 0, 0, -1};
+        int[] colList = {0, 1, -1, 0};
 
-        // Initialize the matrix
-        int[][] matrix = new int[numRows][numCols];
-
-        // Reset the scanner to the beginning of the file
-        scanner.close();
-        scanner = new Scanner(file);
-
-        // Read the values into the matrix
-        int row = 0;
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine().trim();
-            if (line.isEmpty()) {
-                continue;
-            }
-            String[] tokens = line.split("\\s+");
-            for (int col = 0; col < numCols; col++) {
-                matrix[row][col] = Integer.parseInt(tokens[col]);
-            }
-            row++;
-        }
-
-        // Close the scanner and return the matrix
-        scanner.close();
-        return matrix;
-    }
-
-    public static boolean[][] convertBinaryToBoolean(int[][] binaryArray) {
-        int numRows = binaryArray.length;
-        int numCols = binaryArray[0].length;
-        boolean[][] boolArray = new boolean[numRows][numCols];
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
-                boolArray[i][j] = (binaryArray[i][j] == 1);
-            }
-        }
-        return boolArray;
-    }  
-
-    public static int countClusters(boolean[][] matrix) {
-        int n = matrix.length;
-        int count = 0;
-        boolean[][] visited = new boolean[n][n];
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (!visited[i][j] && matrix[i][j]) {
-                    count++;
-                    dfs(matrix, visited, i, j);
+        for (int i = 0; i < rowLen; i++){
+            for (int j = 0; j < colLen; j++){
+                if (grid[i][j] == '1' && !visited[i][j]){
+                    totalIslands++;
+                    dfs(i, j, grid, rowLen, colLen, rowList, colList, visited);
                 }
             }
         }
-
-        return count;
+        return totalIslands;
     }
+    private void dfs(int row, int col, char[][] grid, int rowLen, int colLen, int[]rowList, int[] colList, boolean[][] visited){
+        visited [row][col] = true;
 
-    private static void dfs(boolean[][] matrix, boolean[][] visited, int i, int j) {
-        int n = matrix.length;
+        for (int i = 0; i < 4; i++){
+            int deltaRow = rowList[i] + row;
+            int deltaCol = colList[i] + col;
 
-        if (i < 0 || i >= n || j < 0 || j >= n) {
-            return;
+            if (deltaRow < 0 || deltaCol < 0 || deltaRow >= rowLen || deltaCol >= colLen){
+                continue;
+            }
+            if (deltaRow == row && deltaCol == col){
+                continue;
+            }
+            if (grid[deltaRow][deltaCol] == '1' && !visited[deltaRow][deltaCol]){
+                dfs(deltaRow, deltaCol, grid, rowLen, colLen, rowList, colList, visited);
+            }
+        }
+    }
+}
+
+
+class ReadMatrixFromFile {
+
+    public static char[][] readMatrixFromFile(String fileName) {
+        File file = new File(fileName);
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
-        if (!visited[i][j] && matrix[i][j]) {
-            visited[i][j] = true;
-            dfs(matrix, visited, i-1, j-1);
-            dfs(matrix, visited, i-1, j);
-            dfs(matrix, visited, i-1, j+1);
-            dfs(matrix, visited, i, j-1);
-            dfs(matrix, visited, i, j+1);
-            dfs(matrix, visited, i+1, j-1);
-            dfs(matrix, visited, i+1, j);
-            dfs(matrix, visited, i+1, j+1);
+        int numRows = 0;
+        int numCols = 0;
+
+        // get the number of rows and columns in the matrix
+        while (scanner.hasNextLine()) {
+            numRows++;
+            String line = scanner.nextLine();
+            numCols = line.split(" ").length;
         }
+
+        char[][] grid = new char[numRows][numCols];
+
+        // reset scanner to the beginning of the file
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // read the values from the file into the grid
+        int i = 0;
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            String[] values = line.split(" ");
+            for (int j = 0; j < values.length; j++) {
+                grid[i][j] = values[j].charAt(0);
+            }
+            i++;
+        }
+
+        return grid;
     }
 }
