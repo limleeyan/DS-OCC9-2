@@ -1,6 +1,7 @@
 package def;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
     Vertex<T,N> head;
@@ -11,12 +12,10 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
         size = 0;
     }
 
-    //get number of vertices
     public int getSize(){
         return size;
     }
 
-    //is this vertex in graph?
     public boolean hasVertex(T v){
         if (head==null)
             return false;
@@ -29,7 +28,6 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
         return false;
     }
 
-    //get inDeg of a Vertex (有几个指向这个vertex)
     public int getIndeg(T v){
         if (hasVertex(v)==true){
             Vertex<T,N> temp = head;
@@ -42,7 +40,6 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
         return -1;
     }
 
-    //get outDeg of a Vertex (有几个从这个vertex指出去)
     public int getOutdeg(T v){
         if (hasVertex(v)==true){
             Vertex<T,N> temp = head;
@@ -73,24 +70,6 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
             return true;
         }
         else return false; //vertex already in the graph
-    }
-
-    // not complete
-    public boolean removeVertex(T v){
-        if (head==null)
-            return false;
-        if (hasVertex(v)==true){
-            Vertex<T,N> temp = head;
-            while (temp!=null){
-                if (temp.vertexInfo.compareTo(v)==0){
-
-                    size--;
-                    return true;
-                }
-                temp = temp.nextVertex;
-            }
-        }
-        return false;
     }
 
     public int getIndex(T v){
@@ -170,37 +149,8 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
         return false;
     }
 
-    public boolean addUndirectedEdge (T v1, T v2, N w){
-        if (head==null)
-            return false;
-        if(!hasVertex(v1) || (!hasVertex(v2)))
-            return false;
-        Vertex<T,N> temp1 = head;
-        while(temp1!=null){
-            if(temp1.vertexInfo.compareTo(v1)==0){
-                Vertex<T,N> temp2 = head;
-                while(temp2!=null) {
-                    if(temp2.vertexInfo.compareTo(v2)==0) {
-                        Edge<T,N> currentEdge1 = temp1.firstEdge;
-                        Edge<T,N> newEdge1 = new Edge<>(temp2, w, currentEdge1);
-                        temp1.firstEdge = newEdge1;
-
-                        Edge<T,N> currentEdge2 = temp2.firstEdge;
-                        Edge<T,N> newEdge2 = new Edge<>(temp1, w, currentEdge2);
-                        temp2.firstEdge = newEdge2;
-
-                        temp1.outdeg++;
-                        temp1.indeg++;
-                        temp2.outdeg++;
-                        temp2.indeg++;
-                        return true;
-                    }
-                    temp2 = temp2.nextVertex;
-                }
-            }
-            temp1 = temp1.nextVertex;
-        }
-        return false;
+    public boolean addUndirectedEdge(T v1, T v2, N w){
+        return (addDirectedEdge(v1,v2,w) && addDirectedEdge(v2,v1,w));
     }
 
     public N getEdgeWeight(T source, T destination){
@@ -254,6 +204,60 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
             System.out.println();
             temp = temp.nextVertex;
         }
+    }
+
+    /** food harvesting using Hamiltonian cycle **/
+    public List<T> findHamiltonianCycle() {
+        int numVertices = getSize();
+        boolean[] visited = new boolean[numVertices];
+        List<T> cycle = new ArrayList<>();
+        cycle.add(getVertex(0));  // Start from the first vertex
+        visited[0] = true;
+
+        if (findHamiltonianCycleUtil(0, numVertices, visited, cycle)) {
+            return cycle;
+        } else {
+            return new ArrayList<>(); // No Hamiltonian Cycle found
+        }
+    }
+
+    private boolean findHamiltonianCycleUtil(int currentVertex, int remainingVertices,
+                                             boolean[] visited, List<T> cycle) {
+        if (remainingVertices == 1) {
+            // All vertices have been visited, check if there is an edge to the starting vertex
+            T startVertex = cycle.get(0);
+            T lastVertex = cycle.get(cycle.size() - 1);
+            if (hasEdge(lastVertex, startVertex)) {
+                cycle.add(startVertex);  // Add the starting vertex to complete the cycle
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        List<T> neighbors = getNeighbours(cycle.get(currentVertex));
+        for (T neighbor : neighbors) {
+            int neighborIndex = getIndex(neighbor);
+            if (!visited[neighborIndex]) {
+                // Check if the neighbor node has food
+//                if (!hasFood(neighbor)) {
+//                    continue;  // Skip this neighbor if it does not have food
+//                }
+
+                cycle.add(neighbor);
+                visited[neighborIndex] = true;
+
+                if (findHamiltonianCycleUtil(neighborIndex, remainingVertices - 1, visited, cycle)) {
+                    return true;
+                }
+
+                // Backtrack
+                cycle.remove(cycle.size() - 1);
+                visited[neighborIndex] = false;
+            }
+        }
+
+        return false;
     }
 }
 
