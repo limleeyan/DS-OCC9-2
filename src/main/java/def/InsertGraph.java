@@ -1,11 +1,7 @@
 package def;
 
-public class TestGraph {
+public class InsertGraph {
     public static void main(String[] args) {
-//        Graph<String,Integer> graph1 = new Graph<>();
-//        String[] vertices = {"1","2","3","4","5","6","7","8","9","10"};
-//        for(String elem: vertices)
-//            graph1.addVertex(elem);
         Graph<Integer,Integer> graph1 = new Graph<>();
         int[] vertices = {1,2,3,4,5,6,7,8,9,10};
         for(int elem : vertices)
