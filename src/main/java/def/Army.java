@@ -4,11 +4,12 @@ import java.util.Scanner;
 import java.io.*;
 import java.util.ArrayList;
 
-public class InsertArmy {
+public class Army {
+    static ArrayList<ArmyData> army = new ArrayList<>();
+    static TreeNode root, mill, mgmt;
     public static void main(String[] args) {
-        ArrayList<ArmyData> army = new ArrayList<>();
         try {
-            Scanner in = new Scanner(new FileInputStream("C:\\Users\\jcchu\\OneDrive - Universiti Malaya\\UM2022-23\\code\\DS-OCC9-2\\src\\main\\java\\def\\ArmyList.txt"));
+            Scanner in = new Scanner(new FileInputStream("src/main/java/def/ArmyList.txt"));
             while (in.hasNextLine()){
                 String str = in.nextLine();
                 String[] data = str.split(",");
@@ -23,9 +24,9 @@ public class InsertArmy {
             System.out.println(e);
         }
 
-        TreeNode root = new TreeNode(army.get(0));
-        TreeNode mill = new TreeNode(army.get(1));
-        TreeNode mgmt = new TreeNode(army.get(2));
+        root = new TreeNode(army.get(0));
+        mill = new TreeNode(army.get(1));
+        mgmt = new TreeNode(army.get(2));
         root.addChild(mill);
         root.addChild(mgmt);
         for (int i = 3; i < army.size(); i++){
@@ -36,7 +37,6 @@ public class InsertArmy {
                 mill.addChild(child);
             }
         }
-
-        root.printTree();
+        // root.printTree();
     }
 }
