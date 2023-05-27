@@ -5,7 +5,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 import java.util.Scanner;
 
-public class SecureEncryption {
+public class TextConverterSecure {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         //enter a plaintext string
