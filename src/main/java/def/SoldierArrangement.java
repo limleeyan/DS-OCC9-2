@@ -18,7 +18,7 @@ public class SoldierArrangement {
             System.out.println("1. Soldier Arrangement");
             System.out.println("2. Sorted General's Abilities");
             System.out.println("3. View 1 General's Abilities");
-            System.out.println("4. Search bu ability value");
+            System.out.println("4. Search by ability value");
             System.out.println("-1. Exit");
             System.out.print("Choice: ");
             int choice = in.nextInt();
@@ -68,11 +68,36 @@ public class SoldierArrangement {
             System.out.print("Choice: ");
             int choice = in.nextInt();
             switch (choice) {
-                case 1 -> sortStrength();
-                case 2 -> sortLeadership();
-                case 3 -> sortIntelligence();
-                case 4 -> sortPolitic();
-                case 5 -> sortHitpoint();
+                case 1 -> {
+                    sortStrength();
+                    for (int i = 0; i < generals.size(); i++){
+                        System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getStrength());
+                    }
+                }
+                case 2 -> {
+                    sortLeadership();
+                    for (int i = 0; i < generals.size(); i++){
+                        System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getLeadership());
+                    }
+                }
+                case 3 -> {
+                    sortIntelligence();
+                    for (int i = 0; i < generals.size(); i++){
+                        System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getIntelligence());
+                    }
+                }
+                case 4 -> {
+                    sortPolitic();
+                    for (int i = 0; i < generals.size(); i++){
+                        System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getPolitic());
+                    }
+                }
+                case 5 -> {
+                    sortHitpoint();
+                    for (int i = 0; i < generals.size(); i++){
+                        System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getHitpoint());
+                    }
+                }
                 case -1 -> yes = false;
                 default -> System.out.println("Invalid input");
             }
@@ -110,11 +135,6 @@ public class SoldierArrangement {
             generals.set(min, generals.get(i));
             generals.set(i, temp);
         }
-
-        // print sorted list
-        for (int i = 0; i < generals.size(); i++){
-            System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getStrength());
-        }
     }
     public static void sortLeadership() {
         // bubble sort
@@ -124,11 +144,6 @@ public class SoldierArrangement {
                 generals.set(i, generals.get(i+1));
                 generals.set(i+1, temp);
             }
-        }
-
-        // print sorted list
-        for (int i = 0; i < generals.size(); i++){
-            System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getLeadership());
         }
     }
 
@@ -143,21 +158,11 @@ public class SoldierArrangement {
             }
             generals.set(j+1, temp);
         }
-
-        // print sorted list
-        for (int i = 0; i < generals.size(); i++){
-            System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getIntelligence());
-        }
     }
 
     public static void sortPolitic() {
         // quicksort
         quickSort(0, generals.size()-1);
-
-        // print sorted list
-        for (int i = 0; i < generals.size(); i++){
-            System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getPolitic());
-        }
     }
     public static void quickSort(int low, int high) {
         if (low < high) {
@@ -186,11 +191,6 @@ public class SoldierArrangement {
     public static void sortHitpoint(){
         // merge sort
         mergeSort(0, generals.size()-1);
-
-        // print sorted list
-        for (int i = 0; i < generals.size(); i++){
-            System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getHitpoint());
-        }
     }
     public static void mergeSort(int low, int high) {
         if (low < high) {
@@ -252,20 +252,36 @@ public class SoldierArrangement {
 
         while(low<=high){
             int middle = low + (high-low)/2;
-            int value;
+            int value = 0;
 
             switch(choice){
-                case 1 -> value = generals.get(middle).getArmyData().getLeadership();
-                case 2 -> value = generals.get(middle).getArmyData().getStrength();
-                case 3 -> value = generals.get(middle).getArmyData().getIntelligence();
-                case 4 -> value = generals.get(middle).getArmyData().getPolitic();
-                case 5 -> value = generals.get(middle).getArmyData().getHitpoint();
-                default -> throw new IllegalStateException("Unexpected value: " + choice);
+                case 1 -> {
+                    sortLeadership();
+                    value = generals.get(middle).getArmyData().getLeadership();
+                }
+                case 2 -> {
+                    sortStrength();
+                    value = generals.get(middle).getArmyData().getStrength();
+                }
+                case 3 -> {
+                    sortIntelligence();
+                    value = generals.get(middle).getArmyData().getIntelligence();
+                }
+                case 4 -> {
+                    sortPolitic();
+                    value = generals.get(middle).getArmyData().getPolitic();
+                }
+                case 5 -> {
+                    sortHitpoint();
+                    value = generals.get(middle).getArmyData().getHitpoint();
+                }
+                default -> System.out.println("Unexpected value: " + choice);
             }
 
-            if(value==target){
+            if(value == target){
                 System.out.println(generals.get(middle).getArmyData().getName() + " " + value);
-            } else if(value<target){
+                break;
+            } else if(value > target){
                 high = middle-1;
             } else{
                 low = middle +1;
