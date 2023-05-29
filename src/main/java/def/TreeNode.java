@@ -30,4 +30,8 @@ public class TreeNode {
             }
         }
     }
+
+    public ArmyData getArmyData() {
+        return data;
+    }
 }
