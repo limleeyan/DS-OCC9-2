@@ -4,7 +4,6 @@ import java.util.*;
 
 public class ShortestPath {
     private  static List<List<Integer>> paths;
-    private static boolean[] visited;
     private static int destination;
 
     public static void main(String[] args) {
@@ -23,7 +22,7 @@ public class ShortestPath {
 
         //Find all possible paths using BFS
         paths = new ArrayList<>();
-        visited = new boolean[graph1.getSize()];
+//        visited = new boolean[graph1.getSize()];
         breadthFirstSearch(graph1,1,new ArrayList<>());
 
         //Print the best path(s)
@@ -32,7 +31,6 @@ public class ShortestPath {
 
     public static void breadthFirstSearch(Graph<Integer,Integer> graph, int start, List<Integer> currentPath){
         Queue<List<Integer>> queue = new LinkedList<>();
-        visited[start -1] = true;
         currentPath.add(start);
         queue.offer(currentPath);
 
@@ -43,14 +41,15 @@ public class ShortestPath {
             if(lastNode == destination){
                 paths.add(path);
             }
+            else{
 
-            List<Integer> neibours = graph.getNeighbours(lastNode);
-            for(int neibour : neibours){
-                if(!visited[neibour -1]){
-                    visited[neibour-1] = true;
-                    List<Integer> newPath = new ArrayList<>(path);
-                    newPath.add(neibour);
-                    queue.offer(newPath);
+                List<Integer> neibours = graph.getNeighbours(lastNode);
+                for(int neibour : neibours){
+                    if(!path.contains(neibour)){ //if not yet visit
+                        List<Integer> newPath = new ArrayList<>(path);
+                        newPath.add(neibour);
+                        queue.offer(newPath);
+                    }
                 }
             }
         }
@@ -58,13 +57,25 @@ public class ShortestPath {
 
     private static void printBestPaths(){
         System.out.println("Best path(s): ");
+        int min = paths.get(0).size();
         for(List<Integer> path: paths) {
-            for (int i = 0; i < path.size() - 1; i++) {
-                System.out.print(path.get(i) + "->");
+            if(path.size()<min){
+                min = path.size(); //get min size
             }
-            System.out.println(path.get(path.size() - 1));
         }
+        for(List<Integer> path: paths){
+            if(path.size()==min){
+                for (int i = 0; i < path.size() - 1; i++) {
+
+                    System.out.print(path.get(i) + "->");
+                }
+                System.out.println(path.get(path.size() - 1));
+            }
+        }
+
     }
+
+
     private static Graph<Integer, Integer> createGraph(){
         Graph<Integer, Integer> graph = new Graph<>();
         int[] vertices = {1,2,3,4,5,6,7,8,9,10};
