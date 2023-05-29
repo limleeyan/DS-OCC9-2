@@ -34,7 +34,7 @@ class Cell {
     }
 }
 
-class AStarAlgorithm {
+class FindPath {
     private static final int[][] DIRECTIONS = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
     private static int calculateHeuristic(int row, int col, int exitRow, int exitCol) {
@@ -104,27 +104,16 @@ class AStarAlgorithm {
 }
 
 public class MazePath2 {
-    public static void main(String[] args) {
-        int[][] matrix = {
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1},
-            {1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1},
-            {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-            {1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1},
-            {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
-            {1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1},
-            {1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-            {1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1},
-            {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-        };
+    public static void main(String[] args) { 
+
+        int[][] matrix = ReadMatrixFromFile.matrixFile2IntArray("C:\\Users\\eefei\\Desktop\\SEM2 DS Assignment\\DS-OCC9-2-1\\src\\main\\java\\def\\CaoCaoMaze.txt");
 
         int entryRow = 1;
         int entryCol = 0;
         int exitRow = 9;
         int exitCol = 12;
 
-        List<Cell> path = AStarAlgorithm.findPath(matrix, entryRow, entryCol, exitRow, exitCol);
+        List<Cell> path = FindPath.findPath(matrix, entryRow, entryCol, exitRow, exitCol);
 
         if (path != null) {
             System.out.println("Path found:");
