@@ -1,7 +1,5 @@
 package def;
 import java.util.*;
-
-
 public class ShortestPath {
     private  static List<List<Integer>> paths;
     private static int destination;
