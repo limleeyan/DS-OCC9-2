@@ -1,13 +1,10 @@
 package def;
-import java.io.File;
-import java.util.Scanner;
-import java.io.FileNotFoundException;
 
 public class MatrixCluster {
     public static void main(String args[]) {
         
         MatrixCluster2 cluster = new MatrixCluster2();
-        char[][] grid = ReadMatrixFromFile.readMatrixFromFile("BattleShipMatrix.txt");
+        char[][] grid = ReadMatrixFromFile.matrixFile2CharArray("C:\\Users\\eefei\\Desktop\\SEM2 DS Assignment\\DS-OCC9-2-1\\src\\main\\java\\def\\BattleshipMatrix.txt");
 
         // for (int i = 0; i < grid.length; i++) {
         //     for (int j = 0; j < grid[i].length; j++) {
@@ -65,48 +62,3 @@ class MatrixCluster2{
     }
 }
 
-
-class ReadMatrixFromFile {
-
-    public static char[][] readMatrixFromFile(String fileName) {
-        File file = new File(fileName);
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        int numRows = 0;
-        int numCols = 0;
-
-        // get the number of rows and columns in the matrix
-        while (scanner.hasNextLine()) {
-            numRows++;
-            String line = scanner.nextLine();
-            numCols = line.split(" ").length;
-        }
-
-        char[][] grid = new char[numRows][numCols];
-
-        // reset scanner to the beginning of the file
-        try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // read the values from the file into the grid
-        int i = 0;
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            String[] values = line.split(" ");
-            for (int j = 0; j < values.length; j++) {
-                grid[i][j] = values[j].charAt(0);
-            }
-            i++;
-        }
-
-        return grid;
-    }
-}
