@@ -1,7 +1,6 @@
 package def;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
     Vertex<T, N> head;
