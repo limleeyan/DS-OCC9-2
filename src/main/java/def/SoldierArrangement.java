@@ -6,6 +6,9 @@ import java.util.ArrayList;
 public class SoldierArrangement {
     static Scanner in = new Scanner(System.in);
     private static ArrayList<TreeNode> generals = new ArrayList<>();
+    static ArrayList<TreeNode> sortedPolitics = new ArrayList<>();
+    static ArrayList<TreeNode> sortedIntelligence = new ArrayList<>();
+
     public static void main(String[] args) {
         Army.main(new String[]{}); // liddis first, no central class yet
         for (int i = 3; i < Army.army.size(); i++) {
@@ -70,32 +73,32 @@ public class SoldierArrangement {
             switch (choice) {
                 case 1 -> {
                     sortStrength();
-                    for (int i = 0; i < generals.size(); i++){
-                        System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getStrength());
+                    for (TreeNode general : generals) {
+                        System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getStrength());
                     }
                 }
                 case 2 -> {
                     sortLeadership();
-                    for (int i = 0; i < generals.size(); i++){
-                        System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getLeadership());
+                    for (TreeNode general : generals) {
+                        System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getLeadership());
                     }
                 }
                 case 3 -> {
                     sortIntelligence();
-                    for (int i = 0; i < generals.size(); i++){
-                        System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getIntelligence());
+                    for (TreeNode general : generals) {
+                        System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getIntelligence());
                     }
                 }
                 case 4 -> {
                     sortPolitic();
-                    for (int i = 0; i < generals.size(); i++){
-                        System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getPolitic());
+                    for (TreeNode general : generals) {
+                        System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getPolitic());
                     }
                 }
                 case 5 -> {
                     sortHitpoint();
-                    for (int i = 0; i < generals.size(); i++){
-                        System.out.println(generals.get(i).getArmyData().getName() + " " + generals.get(i).getArmyData().getHitpoint());
+                    for (TreeNode general : generals) {
+                        System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getHitpoint());
                     }
                 }
                 case -1 -> yes = false;
@@ -113,9 +116,9 @@ public class SoldierArrangement {
             if (name.equals("Exit")) {
                 yes = false;
             }
-            for (int i = 0; i < generals.size(); i++) {
-                if (generals.get(i).getArmyData().getName().equals(name)) {
-                    System.out.println(generals.get(i).getArmyData().getStats());
+            for (TreeNode general : generals) {
+                if (general.getArmyData().getName().equals(name)) {
+                    System.out.println(general.getArmyData().getStats());
                 }
             }
         } while (yes);
@@ -158,11 +161,13 @@ public class SoldierArrangement {
             }
             generals.set(j+1, temp);
         }
+        sortedIntelligence.addAll(generals);
     }
 
     public static void sortPolitic() {
         // quicksort
         quickSort(0, generals.size()-1);
+        sortedPolitics.addAll(generals);
     }
     public static void quickSort(int low, int high) {
         if (low < high) {
@@ -292,14 +297,14 @@ public class SoldierArrangement {
     public static ArrayList<TreeNode> suggestGeneralsByAbility(int attribute, String level) {
         ArrayList<ArrayList<TreeNode>> combinations = generateCombinations();
         ArrayList<TreeNode> suggestedGenerals = new ArrayList<>();
+        int sum = 0;
         for (ArrayList<TreeNode> combination : combinations) {
-            int sum = calculateSum(combination, attribute);
             boolean meetsRequirement;
-
+            sum = calculateSum(combination, attribute);
             switch (level) {
                 case "S" -> meetsRequirement = sum >= 250;
-                case "A" -> meetsRequirement = sum >= 220;
-                case "B" -> meetsRequirement = sum >= 190;
+                case "A" -> meetsRequirement = sum >= 220 && sum < 250;
+                case "B" -> meetsRequirement = sum >= 190 && sum < 220;
                 case "C" -> meetsRequirement = sum <= 190;
                 default -> meetsRequirement = false;
             }
@@ -308,6 +313,7 @@ public class SoldierArrangement {
                 break;
             }
         }
+        System.out.println("Sum of abilities: " + sum);
         return suggestedGenerals;
     }
 

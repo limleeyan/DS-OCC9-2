@@ -3,6 +3,9 @@ package def;
 import java.util.ArrayList;
 import java.util.List;
 
+// an ADT to store army data.
+// The Generals' data are stored in this form. To get its stats, use the getArmyData() here and get[stats] method of ArmyData class.
+
 public class TreeNode {
     private ArmyData data;
     private List<TreeNode> children;

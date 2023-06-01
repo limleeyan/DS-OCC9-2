@@ -106,7 +106,7 @@ class FindPath {
 public class MazePath2 {
     public static void main(String[] args) { 
 
-        int[][] matrix = ReadMatrixFromFile.matrixFile2IntArray("C:\\Users\\eefei\\Desktop\\SEM2 DS Assignment\\DS-OCC9-2-1\\src\\main\\java\\def\\CaoCaoMaze.txt");
+        int[][] matrix = ReadMatrixFromFile.matrixFile2IntArray("src\\main\\java\\def\\CaoCaoMaze.txt");
 
         int entryRow = 1;
         int entryCol = 0;

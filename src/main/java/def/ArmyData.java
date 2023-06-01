@@ -1,4 +1,9 @@
 package def;
+
+// an ADT to store army data.
+// normally the Generals' data are stored as a TreeNode form.
+// To access its stats, you can use the getArmyData() method in TreeNode and get[stats] method of this class.
+
 public class ArmyData {
     private String name;
     private String type;
