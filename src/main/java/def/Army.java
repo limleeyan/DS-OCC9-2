@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Army {
     static ArrayList<ArmyData> army = new ArrayList<>();
-    // to get the army stats, you can use this static arraylist after running Army.main(new String[]{});
+    // to get the army stats, you can use this static arraylist by running Army army = new Army();
     // for example, to get the strength of the first army, you can use:
     // Army.army.get(0).getStrength();
 
@@ -15,7 +15,14 @@ public class Army {
     // if you want to use this tree, you can use this static treenode after running Army.main(new String[]{});
     // but the generals lists are better managed in an arraylist anyway, so yeah
 
-    public static void main(String[] args) {
+    public Army(){
+        fillArmy();
+    }
+    public Army(boolean print){
+        fillArmy();
+        printArmy();
+    }
+    static void fillArmy(){
         try {
             Scanner in = new Scanner(new FileInputStream("src/main/java/def/ArmyList.txt"));
             while (in.hasNextLine()){
@@ -45,6 +52,9 @@ public class Army {
                 mill.addChild(child);
             }
         }
-        // root.printTree();
+    }
+
+    public static void printArmy(){
+        root.printTree();
     }
 }

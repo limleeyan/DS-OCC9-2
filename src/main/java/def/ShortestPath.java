@@ -4,7 +4,7 @@ public class ShortestPath {
     private  static List<List<Integer>> paths;
     private static int destination;
 
-    public static void main(String[] args) {
+    public ShortestPath() {
         Graph<Integer,Integer> graph1 = createGraph();
         System.out.println("The number of vertices in graph: " + graph1.getSize());
 

@@ -3,7 +3,7 @@ package def;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java .util.Scanner;
+
 public class BorrowingArrow {
     Boat ship = new Boat();
     static Random random = new Random();
@@ -12,6 +12,11 @@ public class BorrowingArrow {
     ArrayList<String> direction = new ArrayList<>();
     ArrayList<Integer> arrowReceived = new ArrayList<>();
     int wave, totalArrow=0;
+
+    public BorrowingArrow() {
+        NumberOfStrawmen();
+    }
+
     public void NumberOfStrawmen() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Number of straw men");
@@ -67,10 +72,5 @@ public class BorrowingArrow {
             return "front";
         else
             return "back";
-    }
-
-    public static void main(String[] args) {
-        BorrowingArrow borrowingArrows = new BorrowingArrow();
-        borrowingArrows.NumberOfStrawmen();
     }
 }

@@ -1,7 +1,7 @@
 package def;
 
 public class MatrixCluster {
-    public static void main(String args[]) {
+    public MatrixCluster() {
         
         MatrixCluster2 cluster = new MatrixCluster2();
         char[][] grid = ReadMatrixFromFile.matrixFile2CharArray("src\\main\\java\\def\\BattleshipMatrix.txt");

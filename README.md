@@ -34,6 +34,7 @@ Subquestion 7: Red Cliff on Fire
 - BattleshipMatrix.txt
 
 Subquestion 8: Cao Cao at Hua Rong Road
+- Cell.java
 - CaoCaoMaze.txt
 - MazePath2.java
 
@@ -44,4 +45,4 @@ Dynamic Arrow Borrowing:
 - StrawMen2.java
 
 More secure encryption:
-- TextConverterSecu.java
+- TextConverterSecure.java

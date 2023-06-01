@@ -6,7 +6,7 @@ import java.util.Base64;
 import java.util.Scanner;
 
 public class TextConverterSecure {
-    public static void main(String[] args) throws Exception {
+    public TextConverterSecure() throws Exception {
         Scanner sc = new Scanner(System.in);
         //enter a plaintext string
         System.out.print("Plain text: ");

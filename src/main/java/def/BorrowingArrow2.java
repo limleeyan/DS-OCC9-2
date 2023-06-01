@@ -13,6 +13,10 @@ public class BorrowingArrow2 {
     ArrayList<Integer> arrowReceived = new ArrayList<>();
     int wave, totalArrow = 0;
 
+    public BorrowingArrow2() {
+        NumberOfStrawmen();
+    }
+
     public void NumberOfStrawmen() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Number of straw men");
@@ -69,10 +73,5 @@ public class BorrowingArrow2 {
             return "front";
         else
             return "back";
-    }
-
-    public static void main(String[] args) {
-        BorrowingArrow2 borrowingArrows = new BorrowingArrow2();
-        borrowingArrows.NumberOfStrawmen();
     }
 }

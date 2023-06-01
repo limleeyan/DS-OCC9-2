@@ -7,7 +7,7 @@ public class FoodHarvesting {
     private static List<Integer> nodesWithoutFood = new ArrayList<>();
     private static List<List<Integer>> paths = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public FoodHarvesting() {
         insertGraph();
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter node without food (-1 to quit): ");
