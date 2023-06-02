@@ -5,26 +5,33 @@ public class ShortestPath {
     private static int destination;
 
     public ShortestPath() {
-        Graph<Integer,Integer> graph1 = createGraph();
+        Graph<Integer, Integer> graph1 = createGraph();
         System.out.println("The number of vertices in graph: " + graph1.getSize());
 
         System.out.println("Vertices: ");
-        for(int i=0; i< graph1.getSize();i++){
-            System.out.print(i+ ": "+ graph1.getVertex(i)+ "\t");
+        for (int i = 0; i < graph1.getSize(); i++) {
+            System.out.print(i + ": " + graph1.getVertex(i) + "\t");
         }
         System.out.println();
 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the base camp for the enemy base camp: ");
-        destination = sc.nextInt();
 
-        //Find all possible paths using BFS
-        paths = new ArrayList<>();
+        while (true) {
+            System.out.print("Enter the base camp for the enemy base camp (Press -1 exit to Basic Feature Menu): ");
+            destination = sc.nextInt();
+
+            if (destination == -1) {
+                break;
+            }
+
+            //Find all possible paths using BFS
+            paths = new ArrayList<>();
 //        visited = new boolean[graph1.getSize()];
-        breadthFirstSearch(graph1,1,new ArrayList<>());
+            breadthFirstSearch(graph1, 1, new ArrayList<>());
 
-        //Print the best path(s)
-        printBestPaths();
+            //Print the best path(s)
+            printBestPaths();
+        }
     }
 
     public static void breadthFirstSearch(Graph<Integer,Integer> graph, int start, List<Integer> currentPath){
