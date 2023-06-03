@@ -34,6 +34,7 @@ class FindPath {
                 // Exit reached, backtrack the path
                 List<Cell> path = new ArrayList<>();
                 while (current != null) {
+                    current.isPath = true;
                     path.add(0, current);
                     current = current.parent;
                 }
@@ -77,18 +78,25 @@ public class MazePath2 {
     public MazePath2() {
 
         int[][] matrix = ReadMatrixFromFile.matrixFile2IntArray("src\\main\\java\\def\\CaoCaoMaze.txt");
-
-        int entryRow = 1;
+        
+        int entryRow = 0;
         int entryCol = 0;
         int exitRow = 9;
-        int exitCol = 12;
+        int exitCol = 9;
 
         List<Cell> path = FindPath.findPath(matrix, entryRow, entryCol, exitRow, exitCol);
 
         if (path != null) {
             System.out.println("Path found:");
-            for (Cell cell : path) {
-                System.out.println("(" + cell.row + ", " + cell.col + ")");
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 0; j < matrix[0].length; j++) {
+                    if (path.contains(new Cell(i, j, 0, 0))) {
+                        System.out.print("* ");
+                    } else {
+                        System.out.print(matrix[i][j] + " ");
+                    }
+                }
+                System.out.println();
             }
         } else {
             System.out.println("No path found.");

@@ -6,12 +6,15 @@ public class Cell {
     int cost;
     int heuristic;
     Cell parent;
+    boolean isPath;
 
     public Cell(int row, int col, int cost, int heuristic) {
         this.row = row;
         this.col = col;
         this.cost = cost;
         this.heuristic = heuristic;
+        this.parent = null;
+        this.isPath = false;
     }
 
     @Override
