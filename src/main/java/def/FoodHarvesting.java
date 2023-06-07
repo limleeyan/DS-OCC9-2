@@ -3,7 +3,7 @@ package def;
 import java.util.*;
 
 public class FoodHarvesting {
-    private static Graph<Integer,Integer> foodGraph = new Graph<>();
+    private static Graph<Integer> foodGraph = new Graph<>();
     private static List<Integer> nodesWithoutFood = new ArrayList<>();
     private static List<List<Integer>> paths = new ArrayList<>();
 
@@ -126,31 +126,31 @@ public class FoodHarvesting {
         for(int elem : vertices)
             foodGraph.addVertex(elem);
 
-        foodGraph.addUndirectedEdge(1,2,null);
-        foodGraph.addUndirectedEdge(1,3,null);
-        foodGraph.addUndirectedEdge(1,6,null);
-        foodGraph.addUndirectedEdge(1,10,null);
+        foodGraph.addUndirectedEdge(1,2);
+        foodGraph.addUndirectedEdge(1,3);
+        foodGraph.addUndirectedEdge(1,6);
+        foodGraph.addUndirectedEdge(1,10);
 
-        foodGraph.addUndirectedEdge(2,4,null);
+        foodGraph.addUndirectedEdge(2,4);
 
-        foodGraph.addUndirectedEdge(3,4,null);
-        foodGraph.addDirectedEdge(3,7,null);
+        foodGraph.addUndirectedEdge(3,4);
+        foodGraph.addDirectedEdge(3,7);
 
-        foodGraph.addUndirectedEdge(4,5,null);
+        foodGraph.addUndirectedEdge(4,5);
 
-        foodGraph.addUndirectedEdge(5,6,null);
-        foodGraph.addUndirectedEdge(5,7,null);
+        foodGraph.addUndirectedEdge(5,6);
+        foodGraph.addUndirectedEdge(5,7);
 
-        foodGraph.addUndirectedEdge(6,7,null);
-        foodGraph.addUndirectedEdge(6,8,null);
+        foodGraph.addUndirectedEdge(6,7);
+        foodGraph.addUndirectedEdge(6,8);
 
-        foodGraph.addUndirectedEdge(7,8,null);
-        foodGraph.addUndirectedEdge(7,9,null);
+        foodGraph.addUndirectedEdge(7,8);
+        foodGraph.addUndirectedEdge(7,9);
 
-        foodGraph.addUndirectedEdge(8,9,null);
-        foodGraph.addUndirectedEdge(8,10,null);
+        foodGraph.addUndirectedEdge(8,9);
+        foodGraph.addUndirectedEdge(8,10);
 
-        foodGraph.addUndirectedEdge(9,10,null);
+        foodGraph.addUndirectedEdge(9,10);
     }
 
 

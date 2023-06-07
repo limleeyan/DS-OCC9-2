@@ -2,8 +2,8 @@ package def;
 
 import java.util.*;
 
-public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
-    Vertex<T, N> head;
+public class Graph<T extends Comparable<T>> {
+    Vertex<T> head;
     int size;
 
     public Graph() {
@@ -18,7 +18,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
     public boolean hasVertex(T v) {
         if (head == null)
             return false;
-        Vertex<T, N> temp = head;
+        Vertex<T> temp = head;
         while (temp != null) {
             if (temp.vertexInfo.compareTo(v) == 0)
                 return true;
@@ -29,7 +29,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
 
     public int getIndeg(T v) {
         if (hasVertex(v) == true) {
-            Vertex<T, N> temp = head;
+            Vertex<T> temp = head;
             while (temp != null) {
                 if (temp.vertexInfo.compareTo(v) == 0)
                     return temp.indeg;
@@ -41,7 +41,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
 
     public int getOutdeg(T v) {
         if (hasVertex(v) == true) {
-            Vertex<T, N> temp = head;
+            Vertex<T> temp = head;
             while (temp != null) {
                 if (temp.vertexInfo.compareTo(v) == 0)
                     return temp.outdeg;
@@ -53,12 +53,12 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
 
     public boolean addVertex(T v) {
         if (hasVertex(v) == false) {
-            Vertex<T, N> temp = head;
-            Vertex<T, N> newVertex = new Vertex<>(v, null);
+            Vertex<T> temp = head;
+            Vertex<T> newVertex = new Vertex<>(v, null);
             if (head == null) //graph is empty
                 head = newVertex;
             else {
-                Vertex<T, N> previous = head;
+                Vertex<T> previous = head;
                 while (temp != null) {
                     previous = temp;
                     temp = temp.nextVertex;
@@ -71,7 +71,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
     }
 
     public int getIndex(T v) {
-        Vertex<T, N> temp = head;
+        Vertex<T> temp = head;
         int pos = 0;
         while (temp != null) {
             if (temp.vertexInfo.compareTo(v) == 0) //vertex is found
@@ -84,7 +84,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
 
     public ArrayList<T> getAllVertexObjects() {
         ArrayList<T> list = new ArrayList<>();
-        Vertex<T, N> temp = head;
+        Vertex<T> temp = head;
         while (temp != null) {
             list.add(temp.vertexInfo);
             temp = temp.nextVertex;
@@ -95,7 +95,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
     public T getVertex(int pos) {
         if (pos > size - 1 || pos < 0)
             return null;
-        Vertex<T, N> temp = head;
+        Vertex<T> temp = head;
         for (int i = 0; i < pos; i++)
             temp = temp.nextVertex;
         return temp.vertexInfo;
@@ -106,10 +106,10 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
             return false;
         if (!hasVertex(source) || !hasVertex(destination))
             return false;
-        Vertex<T, N> sourceVertex = head;
+        Vertex<T> sourceVertex = head;
         while (sourceVertex != null) {
             if (sourceVertex.vertexInfo.compareTo(source) == 0) {
-                Edge<T, N> currentEdge = sourceVertex.firstEdge;
+                Edge<T> currentEdge = sourceVertex.firstEdge;
                 while (currentEdge != null) {
                     if (currentEdge.toVertex.vertexInfo.compareTo(destination) == 0)
                         return true;
@@ -121,19 +121,19 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
         return false;
     }
 
-    public boolean addDirectedEdge(T source, T destination, N w) {
+    public boolean addDirectedEdge(T source, T destination) {
         if (head == null)
             return false;
         if (!hasVertex(source) || !hasVertex(destination))
             return false;
-        Vertex<T, N> sourceVertex = head;
+        Vertex<T> sourceVertex = head;
         while (sourceVertex != null) {
             if (sourceVertex.vertexInfo.compareTo(source) == 0) {
-                Vertex<T, N> destinationVertex = head;
+                Vertex<T> destinationVertex = head;
                 while (destinationVertex != null) {
                     if (destinationVertex.vertexInfo.compareTo(destination) == 0) {
-                        Edge<T, N> currentEdge = sourceVertex.firstEdge;
-                        Edge<T, N> newEdge = new Edge<>(destinationVertex, w, currentEdge);
+                        Edge<T> currentEdge = sourceVertex.firstEdge;
+                        Edge<T> newEdge = new Edge<>(destinationVertex, currentEdge);
                         sourceVertex.firstEdge = newEdge;
                         sourceVertex.outdeg++;
                         destinationVertex.indeg++;
@@ -147,39 +147,18 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
         return false;
     }
 
-    public boolean addUndirectedEdge(T v1, T v2, N w) {
-        return (addDirectedEdge(v1, v2, w) && addDirectedEdge(v2, v1, w));
-    }
-
-    public N getEdgeWeight(T source, T destination) {
-        N notFound = null;
-        if (head == null)
-            return notFound;
-        if (!hasVertex(source) || !hasVertex(destination))
-            return notFound;
-        Vertex<T, N> sourceVertex = head;
-        while (sourceVertex != null) {
-            if (sourceVertex.vertexInfo.compareTo(source) == 0) {
-                Edge<T, N> currentEdge = sourceVertex.firstEdge;
-                while (currentEdge != null) {
-                    if (currentEdge.toVertex.vertexInfo.compareTo(destination) == 0)
-                        return currentEdge.weight;
-                    currentEdge = currentEdge.nextEdge;
-                }
-            }
-            sourceVertex = sourceVertex.nextVertex;
-        }
-        return notFound;
+    public boolean addUndirectedEdge(T v1, T v2) {
+        return (addDirectedEdge(v1, v2) && addDirectedEdge(v2, v1));
     }
 
     public ArrayList<T> getNeighbours(T v) {
         if (!hasVertex(v))
             return null;
         ArrayList<T> list = new ArrayList<>();
-        Vertex<T, N> temp = head;
+        Vertex<T> temp = head;
         while (temp != null) {
             if (temp.vertexInfo.compareTo(v) == 0) {
-                Edge<T, N> currentEdge = temp.firstEdge;
+                Edge<T> currentEdge = temp.firstEdge;
                 while (currentEdge != null) {
                     list.add(currentEdge.toVertex.vertexInfo);
                     currentEdge = currentEdge.nextEdge;
@@ -191,10 +170,10 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
     }
 
     public void printEdges() {
-        Vertex<T, N> temp = head;
+        Vertex<T> temp = head;
         while (temp != null) {
             System.out.print("# " + temp.vertexInfo + " : ");
-            Edge<T, N> currentEdge = temp.firstEdge;
+            Edge<T> currentEdge = temp.firstEdge;
             while (currentEdge != null) {
                 System.out.print("[" + temp.vertexInfo + ", " + currentEdge.toVertex.vertexInfo + "]\t");
                 currentEdge = currentEdge.nextEdge;
@@ -215,8 +194,8 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
             return true;
         }
 
-        Vertex<T, N> prev = head;
-        Vertex<T, N> current = head.nextVertex;
+        Vertex<T> prev = head;
+        Vertex<T> current = head.nextVertex;
 
         // Traverse the list to find the vertex to be removed
         while (current != null) {
@@ -234,11 +213,11 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
         return false;
     }
 
-    private void removeEdgesToVertex(Vertex<T, N> vertex) {
-        Vertex<T, N> temp = head;
+    private void removeEdgesToVertex(Vertex<T> vertex) {
+        Vertex<T> temp = head;
         while (temp != null) {
-            Edge<T, N> prevEdge = null;
-            Edge<T, N> currentEdge = temp.firstEdge;
+            Edge<T> prevEdge = null;
+            Edge<T> currentEdge = temp.firstEdge;
             while (currentEdge != null) {
                 if (currentEdge.toVertex == vertex) {
                     // Remove the edge by adjusting the pointers
@@ -257,12 +236,12 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
         }
     }
 
-    class Vertex<T extends Comparable<T>, N extends Comparable<N>> {
+    class Vertex<T extends Comparable<T>> {
         T vertexInfo;
         int indeg;
         int outdeg;
-        Vertex<T, N> nextVertex;
-        Edge<T, N> firstEdge;
+        Vertex<T> nextVertex;
+        Edge<T> firstEdge;
 
         public Vertex() {
             vertexInfo = null;
@@ -272,7 +251,7 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
             firstEdge = null;
         }
 
-        public Vertex(T vInfo, Vertex<T, N> next) {
+        public Vertex(T vInfo, Vertex<T> next) {
             vertexInfo = vInfo;
             indeg = 0;
             outdeg = 0;
@@ -281,20 +260,17 @@ public class Graph<T extends Comparable<T>, N extends Comparable<N>> {
         }
     }
 
-    class Edge<T extends Comparable<T>, N extends Comparable<N>> {
-        Vertex<T, N> toVertex;
-        N weight;
-        Edge<T, N> nextEdge;
+    class Edge<T extends Comparable<T>> {
+        Vertex<T> toVertex;
+        Edge<T> nextEdge;
 
         public Edge() {
             toVertex = null;
-            weight = null;
             nextEdge = null;
         }
 
-        public Edge(Vertex<T, N> destination, N w, Edge<T, N> a) {
+        public Edge(Vertex<T> destination, Edge<T> a) {
             toVertex = destination;
-            weight = w;
             nextEdge = a;
         }
     }

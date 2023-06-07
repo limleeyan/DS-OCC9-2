@@ -5,7 +5,7 @@ public class ShortestPath {
     private static int destination;
 
     public ShortestPath() {
-        Graph<Integer, Integer> graph1 = createGraph();
+        Graph<Integer> graph1 = createGraph();
         System.out.println("The number of vertices in graph: " + graph1.getSize());
 
         System.out.println("Vertices: ");
@@ -34,7 +34,7 @@ public class ShortestPath {
         }
     }
 
-    public static void breadthFirstSearch(Graph<Integer,Integer> graph, int start, List<Integer> currentPath){
+    public static void breadthFirstSearch(Graph<Integer> graph, int start, List<Integer> currentPath){
         Queue<List<Integer>> queue = new LinkedList<>();
         currentPath.add(start);
         queue.offer(currentPath);
@@ -81,38 +81,38 @@ public class ShortestPath {
     }
 
 
-    private static Graph<Integer, Integer> createGraph(){
-        Graph<Integer, Integer> graph = new Graph<>();
+    private static Graph<Integer> createGraph(){
+        Graph<Integer> graph = new Graph<>();
         int[] vertices = {1,2,3,4,5,6,7,8,9,10};
         for(int elem : vertices){
             graph.addVertex(elem);
         }
 
-        graph.addUndirectedEdge(1,2,null);
-        graph.addUndirectedEdge(1,3,null);
-        graph.addUndirectedEdge(1,6,null);
-        graph.addUndirectedEdge(1,10,null);
+        graph.addUndirectedEdge(1,2);
+        graph.addUndirectedEdge(1,3);
+        graph.addUndirectedEdge(1,6);
+        graph.addUndirectedEdge(1,10);
 
-        graph.addUndirectedEdge(2,4,null);
+        graph.addUndirectedEdge(2,4);
 
-        graph.addUndirectedEdge(3,4,null);
-        graph.addDirectedEdge(3,7,null);
+        graph.addUndirectedEdge(3,4);
+        graph.addDirectedEdge(3,7);
 
-        graph.addUndirectedEdge(4,5,null);
+        graph.addUndirectedEdge(4,5);
 
-        graph.addUndirectedEdge(5,6,null);
-        graph.addUndirectedEdge(5,7,null);
+        graph.addUndirectedEdge(5,6);
+        graph.addUndirectedEdge(5,7);
 
-        graph.addUndirectedEdge(6,7,null);
-        graph.addUndirectedEdge(6,8,null);
+        graph.addUndirectedEdge(6,7);
+        graph.addUndirectedEdge(6,8);
 
-        graph.addUndirectedEdge(7,9,null);
-        graph.addUndirectedEdge(7,8,null);
+        graph.addUndirectedEdge(7,9);
+        graph.addUndirectedEdge(7,8);
 
-        graph.addUndirectedEdge(8,9,null);
-        graph.addUndirectedEdge(8,10,null);
+        graph.addUndirectedEdge(8,9);
+        graph.addUndirectedEdge(8,10);
 
-        graph.addUndirectedEdge(9,10,null);
+        graph.addUndirectedEdge(9,10);
 
         return graph;
     }
