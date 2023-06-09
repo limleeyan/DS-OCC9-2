@@ -46,3 +46,10 @@ Dynamic Arrow Borrowing:
 
 More secure encryption:
 - TextConverterSecure.java
+
+Food Harvesting I:
+- FoodHarvestingI.java
+
+Attack Simulation I:
+- AttackSimulation.java
+- WeightedGraph.java

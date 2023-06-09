@@ -58,12 +58,16 @@ public class Main {
             System.out.println("\n------------Advanced Features------------");
             System.out.println("1. Dynamic Arrow Borrowing");
             System.out.println("2. Advanced Text Encryption");
+            System.out.println("3. Food Harvesting I");
+            // System.out.println("4. Enemy Fortress Attack Simulation I");
             System.out.println("-1. Exit");
             System.out.print("Enter your option: ");
             option = sc.nextInt();
             switch (option) {
                 case 1 -> new BorrowingArrow2();
                 case 2 -> new TextConverterSecure();
+                case 3 -> new FoodHarvestingI();
+                // case 4 -> new AttackSimulation();
                 case -1 -> System.out.println("See you again!");
                 default -> System.out.println("Invalid option!");
             }
