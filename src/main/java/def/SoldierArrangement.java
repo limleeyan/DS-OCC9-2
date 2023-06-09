@@ -37,6 +37,13 @@ public class SoldierArrangement {
         } while (yes);
     }
 
+    public SoldierArrangement(boolean isFood){
+        Army army = new Army(); // liddis first, no central class yet
+        for (int i = 3; i < Army.army.size(); i++) {
+            generals.add(new TreeNode(Army.army.get(i)));
+        }
+    }
+
     public static void soldierArrangement() {
         System.out.println("\n-------------------Soldier Arrangement: --------------------");
         System.out.println("Enter attribute: ");
