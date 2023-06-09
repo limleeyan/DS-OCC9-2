@@ -37,4 +37,8 @@ public class TreeNode {
     public ArmyData getArmyData() {
         return data;
     }
+
+    public String toString(){
+        return data.getName();
+    }
 }

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class FoodHarvesting {
     private static Graph<Integer> foodGraph = new Graph<>();
-    private static List<Integer> nodesWithoutFood = new ArrayList<>();
+    static List<Integer> nodesWithoutFood = new ArrayList<>();
     private static List<List<Integer>> paths = new ArrayList<>();
 
     public FoodHarvesting() {
