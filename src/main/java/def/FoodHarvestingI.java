@@ -9,34 +9,9 @@ public class FoodHarvestingI {
     private static String bestTeamName;
 
     public FoodHarvestingI(){
+        System.out.println("-------------------- Food Harvesting I --------------------");
         new SoldierArrangement(true);
-        new FoodHarvesting();
-
-        // calculate total number of food can get
-        int food = (10 - FoodHarvesting.nodesWithoutFood.size())*100;
-
-        // initialise bestIndex and maxFood
-        bestIndex=0;
-        maxFood = food*getBuff(0);
-
-        for (int i=1; i<8; i++){
-            double foodProduction = food*getBuff(i);
-            if (foodProduction>maxFood){
-                maxFood = foodProduction;
-                bestIndex = i;
-            }
-        }
-
-        getBestTeam();
-        System.out.println("\n--------------------Maximum Food Production--------------------");
-        System.out.println(bestTeamName);
-        System.out.println("Generals: "+bestTeam);
-        System.out.println("Maximum food production: "+maxFood);
-    }
-
-    public static void main(String[] args) {
-        new SoldierArrangement(true);
-        new FoodHarvesting();
+        new FoodHarvesting(true);
 
         // calculate total number of food can get
         int food = (10 - FoodHarvesting.nodesWithoutFood.size())*100;

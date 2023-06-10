@@ -9,6 +9,7 @@ public class SoldierArrangement {
     private static ArrayList<TreeNode> generals = new ArrayList<>();
     static ArrayList<TreeNode> sortedPolitics = new ArrayList<>();
     static ArrayList<TreeNode> sortedIntelligence = new ArrayList<>();
+    private static boolean isFoodHarvesting = false;
 
     public SoldierArrangement(){
         Army army = new Army(); // liddis first, no central class yet
@@ -38,6 +39,7 @@ public class SoldierArrangement {
     }
 
     public SoldierArrangement(boolean isFood){
+        isFoodHarvesting = isFood;
         Army army = new Army(); // liddis first, no central class yet
         for (int i = 3; i < Army.army.size(); i++) {
             generals.add(new TreeNode(Army.army.get(i)));
@@ -223,7 +225,8 @@ public class SoldierArrangement {
                 break;
             }
         }
-        System.out.println("Sum of abilities: " + sum);
+        if (!isFoodHarvesting)
+            System.out.println("Sum of abilities: " + sum);
         return suggestedGenerals;
     }
 
