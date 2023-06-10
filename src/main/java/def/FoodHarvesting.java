@@ -10,34 +10,82 @@ public class FoodHarvesting {
     public FoodHarvesting() {
         insertGraph();
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter node without food (-1 to quit): ");
-        int input = 0;
-        while ((input=sc.nextInt()) != -1){
-            if (input!=-1)
+
+        while (true) {
+            nodesWithoutFood.clear();
+            System.out.print("Enter node without food (0 if no node without food, -1 to exit feature): ");
+            int input;
+            while ((input = sc.nextInt()) != 0 && input!=-1) {
+                if (input != 0)
+                    nodesWithoutFood.add(input);
+            }
+
+            if (input==-1)
+                break;
+
+            // if all nodes contain no food
+            ArrayList<Integer> list = new ArrayList<>();
+            for (int i = 1; i <= 10; i++) {
+                list.add(i);
+            }
+            for (int i = 0; i < nodesWithoutFood.size(); i++) {
+                for (int j = 0; j < list.size(); j++) {
+                    if (nodesWithoutFood.get(i) == list.get(j))
+                        list.remove(j);
+                }
+            }
+            if (list.isEmpty())
+                System.out.println("All nodes contain no food");
+
+                // if only node1 contains food
+            else if (containAllNodesExcept1())
+                System.out.println("1 -> 1");
+
+                // find all possible paths/cycles using DFS
+            else {
+                depthFirstSearch(1, new ArrayList<>());
+
+                // find best paths
+                List<List<Integer>> bestPaths = findBestPaths();
+
+                // print best path(s)
+                printBestPaths(bestPaths);
+            }
+        }
+    }
+
+    public FoodHarvesting(boolean isFood){
+        insertGraph();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter node without food (0 if no node without food, -1 to exit feature): ");
+        int input;
+        while ((input = sc.nextInt()) != 0 && input!=-1) {
+            if (input != 0)
                 nodesWithoutFood.add(input);
         }
 
         // if all nodes contain no food
         ArrayList<Integer> list = new ArrayList<>();
-        for (int i=1; i<=10; i++){
+        for (int i = 1; i <= 10; i++) {
             list.add(i);
         }
-        for (int i=0; i<nodesWithoutFood.size(); i++){
-            for (int j=0; j<list.size(); j++){
-                if (nodesWithoutFood.get(i)==list.get(j))
+        for (int i = 0; i < nodesWithoutFood.size(); i++) {
+            for (int j = 0; j < list.size(); j++) {
+                if (nodesWithoutFood.get(i) == list.get(j))
                     list.remove(j);
             }
         }
         if (list.isEmpty())
             System.out.println("All nodes contain no food");
 
-        // if only node1 contains food
+            // if only node1 contains food
         else if (containAllNodesExcept1())
             System.out.println("1 -> 1");
 
-        // find all possible paths/cycles using DFS
+            // find all possible paths/cycles using DFS
         else {
-            depthFirstSearch(1,new ArrayList<>());
+            depthFirstSearch(1, new ArrayList<>());
 
             // find best paths
             List<List<Integer>> bestPaths = findBestPaths();
