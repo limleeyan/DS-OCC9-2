@@ -15,15 +15,15 @@ public class MatrixCluster {
         //print the matrix to check 
 
 
-        int result = cluster.numIslands(grid);
+        int result = cluster.numShips(grid);
         System.out.println("Number of cluster: " + result);
 
     }
 }
 
 class MatrixCluster2{
-    public int numIslands (char[][] grid){
-        int totalIslands = 0;
+    public int numShips (char[][] grid){
+        int totalShips = 0;
         int rowLen = grid.length;
         int colLen = grid[0].length;
 
@@ -35,12 +35,12 @@ class MatrixCluster2{
         for (int i = 0; i < rowLen; i++){
             for (int j = 0; j < colLen; j++){
                 if (grid[i][j] == '1' && !visited[i][j]){
-                    totalIslands++;
+                    totalShips++;
                     dfs(i, j, grid, rowLen, colLen, rowList, colList, visited);
                 }
             }
         }
-        return totalIslands;
+        return totalShips;
     }
     private void dfs(int row, int col, char[][] grid, int rowLen, int colLen, int[]rowList, int[] colList, boolean[][] visited){
         visited [row][col] = true;
