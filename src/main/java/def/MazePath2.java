@@ -79,10 +79,22 @@ public class MazePath2 {
 
         int[][] matrix = ReadMatrixFromFile.matrixFile2IntArray("src\\main\\java\\def\\CaoCaoMaze.txt");
         
-        int entryRow = 0;
-        int entryCol = 0;
-        int exitRow = 9;
-        int exitCol = 9;
+        int entryRow = -1;
+        int entryCol = -1;
+        int exitRow = -1;
+        int exitCol = -1;
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] == 2) {
+                    entryRow = i;
+                    entryCol = j;
+                } else if (matrix[i][j] == 3) {
+                    exitRow = i;
+                    exitCol = j;
+                }
+            }
+        }
 
         List<Cell> path = FindPath.findPath(matrix, entryRow, entryCol, exitRow, exitCol);
 
