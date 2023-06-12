@@ -11,6 +11,25 @@ public class Graph<T extends Comparable<T>> {
         size = 0;
     }
 
+    private void removeEdgesFromVertex(Vertex<T> vertex) {
+        Edge<T> currentEdge = vertex.firstEdge;
+        while (currentEdge != null) {
+            vertex.outdeg--;
+            currentEdge = currentEdge.nextEdge;
+        }
+        vertex.firstEdge = null;
+    }
+
+    public void clear() {
+        Vertex<T> currentVertex = head;
+        while (currentVertex != null) {
+            removeEdgesFromVertex(currentVertex);
+            currentVertex = currentVertex.nextVertex;
+        }
+        head = null;
+        size = 0;
+    }
+
     public int getSize() {
         return size;
     }
@@ -242,6 +261,7 @@ public class Graph<T extends Comparable<T>> {
         int outdeg;
         Vertex<T> nextVertex;
         Edge<T> firstEdge;
+        int enemyCount;
 
         public Vertex() {
             vertexInfo = null;
@@ -249,6 +269,7 @@ public class Graph<T extends Comparable<T>> {
             outdeg = 0;
             nextVertex = null;
             firstEdge = null;
+            enemyCount = 0;
         }
 
         public Vertex(T vInfo, Vertex<T> next) {
@@ -257,6 +278,15 @@ public class Graph<T extends Comparable<T>> {
             outdeg = 0;
             nextVertex = next;
             firstEdge = null;
+            enemyCount = 0;
+        }
+
+        public int getEnemyCount() {
+            return enemyCount;
+        }
+
+        public void setEnemyCount(int enemyCount) {
+            this.enemyCount = enemyCount;
         }
     }
 

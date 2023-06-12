@@ -8,19 +8,21 @@ public class FoodHarvestingI {
     private static ArrayList<TreeNode> bestTeam;
     private static String bestTeamName;
 
-    public FoodHarvestingI(){
+//    public static void main(String[] args) {
+    public FoodHarvestingI() {
         System.out.println("-------------------- Food Harvesting I --------------------");
         new SoldierArrangement(true);
         new FoodHarvesting(true);
 
         // calculate total number of food can get
-        int food = (10 - FoodHarvesting.nodesWithoutFood.size())*100;
+        int nodeWithFood = 10 - FoodHarvesting.nodesWithoutFood.size();
+        int food = nodeWithFood*100;
 
         // initialise bestIndex and maxFood
         bestIndex=0;
         maxFood = food*getBuff(0);
 
-        for (int i=1; i<8; i++){
+        for (int i=1; i<nodeWithFood; i++){
             double foodProduction = food*getBuff(i);
             if (foodProduction>maxFood){
                 maxFood = foodProduction;
