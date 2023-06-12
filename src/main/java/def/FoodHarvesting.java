@@ -13,7 +13,7 @@ public class FoodHarvesting {
 
         while (true) {
             nodesWithoutFood.clear();
-            System.out.print("Enter node without food (0 if no node without food, -1 to exit feature): ");
+            System.out.print("Enter node without food (0 to proceed, -1 to exit feature): ");
             int input;
             while ((input = sc.nextInt()) != 0 && input!=-1) {
                 if (input != 0)
@@ -43,6 +43,7 @@ public class FoodHarvesting {
 
                 // find all possible paths/cycles using DFS
             else {
+                paths.clear();
                 depthFirstSearch(1, new ArrayList<>());
 
                 // find best paths
@@ -50,6 +51,7 @@ public class FoodHarvesting {
 
                 // print best path(s)
                 printBestPaths(bestPaths);
+
             }
         }
     }
@@ -57,8 +59,9 @@ public class FoodHarvesting {
     public FoodHarvesting(boolean isFood){
         insertGraph();
         Scanner sc = new Scanner(System.in);
+        nodesWithoutFood.clear();
 
-        System.out.print("Enter node without food (0 if no node without food, -1 to exit feature): ");
+        System.out.print("Enter node without food (0 to proceed, -1 to exit feature): ");
         int input;
         while ((input = sc.nextInt()) != 0 && input!=-1) {
             if (input != 0)
@@ -85,6 +88,7 @@ public class FoodHarvesting {
 
             // find all possible paths/cycles using DFS
         else {
+            paths.clear();
             depthFirstSearch(1, new ArrayList<>());
 
             // find best paths
@@ -170,6 +174,7 @@ public class FoodHarvesting {
     }
 
     public static void insertGraph(){
+        foodGraph.clear();
         int[] vertices = {1,2,3,4,5,6,7,8,9,10};
         for(int elem : vertices)
             foodGraph.addVertex(elem);
