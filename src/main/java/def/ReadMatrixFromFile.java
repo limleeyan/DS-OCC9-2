@@ -17,7 +17,6 @@ public class ReadMatrixFromFile {
         int numRows = 0;
         int numCols = 0;
 
-        // get the number of rows and columns in the matrix
         while (scanner.hasNextLine()) {
             numRows++;
             String line = scanner.nextLine();
@@ -25,15 +24,13 @@ public class ReadMatrixFromFile {
         }
 
         char[][] grid = new char[numRows][numCols];
-
-        // reset scanner to the beginning of the file
         try {
             scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        // read the values from the file into the grid
+
         int i = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -57,8 +54,7 @@ public class ReadMatrixFromFile {
     
         int numRows = 0;
         int numCols = 0;
-    
-        // get the number of rows and columns in the matrix
+
         while (scanner.hasNextLine()) {
             numRows++;
             String line = scanner.nextLine();
@@ -66,15 +62,13 @@ public class ReadMatrixFromFile {
         }
     
         int[][] grid = new int[numRows][numCols];
-    
-        // reset scanner to the beginning of the file
+
         try {
             scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     
-        // read the values from the file into the grid
         int i = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();

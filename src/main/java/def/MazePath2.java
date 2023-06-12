@@ -84,7 +84,6 @@ public class MazePath2 {
         int exitRow = -1;
         int exitCol = -1;
 
-        // Traversing the grid to find the entry and exit positions
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 if (matrix[i][j] == 2) {
