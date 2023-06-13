@@ -4,15 +4,13 @@ public class Cell {
     int row;
     int col;
     int cost;
-    int heuristic;
     Cell parent;
     boolean isPath;
 
-    public Cell(int row, int col, int cost, int heuristic) {
+    public Cell(int row, int col, int cost) {
         this.row = row;
         this.col = col;
         this.cost = cost;
-        this.heuristic = heuristic;
         this.parent = null;
         this.isPath = false;
     }
