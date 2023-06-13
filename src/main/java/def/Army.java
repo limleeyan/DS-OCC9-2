@@ -16,6 +16,8 @@ public class Army {
     // but the generals lists are better managed in an arraylist anyway, so yeah
 
     public Army(){
+        if (!army.isEmpty())
+            army.clear();
         fillArmy();
     }
     public Army(boolean print){
