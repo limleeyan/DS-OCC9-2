@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class SoldierArrangement {
     static Scanner in = new Scanner(System.in);
     static Scanner in2 = new Scanner(System.in); // for string input
-    private static ArrayList<TreeNode> generals = new ArrayList<>();
+    static ArrayList<TreeNode> generals = new ArrayList<>();
     static ArrayList<TreeNode> sortedPolitics = new ArrayList<>();
     static ArrayList<TreeNode> sortedIntelligence = new ArrayList<>();
     private static boolean isFoodHarvesting = false;
@@ -39,6 +39,8 @@ public class SoldierArrangement {
     }
 
     public SoldierArrangement(boolean isFood){
+        if (!generals.isEmpty())
+            generals.clear();
         isFoodHarvesting = isFood;
         Army army = new Army(); // liddis first, no central class yet
         for (int i = 3; i < Army.army.size(); i++) {
