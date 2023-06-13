@@ -70,8 +70,9 @@ class FindPath {
 
 public class MazePath2 {
     public MazePath2() {
-        int[][] maze = ReadMatrixFromFile.matrixFile2IntArray("C:\\Users\\eefei\\Desktop\\SEM2 DS Assignment\\DS-OCC9-2-1\\src\\main\\java\\def\\CaoCaoMaze.txt");
-        
+        int[][] maze = ReadMatrixFromFile.matrixFile2IntArray("src\\main\\java\\def\\CaoCaoMaze.txt");
+
+
         int entryRow = -1;
         int entryCol = -1;
         int exitRow = -1;
@@ -108,7 +109,7 @@ public class MazePath2 {
         }
     }
 
-    public static void main(String[] args) {
-        new MazePath2();
-    }
+    // public static void main(String[] args) {
+    //     new MazePath2();
+    // }
 }
