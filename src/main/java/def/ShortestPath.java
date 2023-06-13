@@ -15,18 +15,14 @@ public class ShortestPath {
         System.out.println();
 
         Scanner sc = new Scanner(System.in);
-
         while (true) {
             System.out.print("Enter the base camp for the enemy base camp (Press -1 exit to Basic Feature Menu): ");
             destination = sc.nextInt();
-
             if (destination == -1) {
                 break;
             }
-
             //Find all possible paths using BFS
             paths = new ArrayList<>();
-//        visited = new boolean[graph1.getSize()];
             breadthFirstSearch(graph1, 1, new ArrayList<>());
 
             //Print the best path(s)
@@ -42,15 +38,13 @@ public class ShortestPath {
         while(!queue.isEmpty()){
             List<Integer> path = queue.poll();
             int lastNode = path.get(path.size()-1);
-
             if(lastNode == destination){
                 paths.add(path);
             }
             else{
-
                 List<Integer> neibours = graph.getNeighbours(lastNode);
                 for(int neibour : neibours){
-                    if(!path.contains(neibour)){ //if not yet visit
+                    if(!path.contains(neibour)){  //if not yet visit
                         List<Integer> newPath = new ArrayList<>(path);
                         newPath.add(neibour);
                         queue.offer(newPath);
@@ -77,9 +71,7 @@ public class ShortestPath {
                 System.out.println(path.get(path.size() - 1));
             }
         }
-
     }
-
 
     private static Graph<Integer> createGraph(){
         Graph<Integer> graph = new Graph<>();
@@ -92,26 +84,20 @@ public class ShortestPath {
         graph.addUndirectedEdge(1,3);
         graph.addUndirectedEdge(1,6);
         graph.addUndirectedEdge(1,10);
-
         graph.addUndirectedEdge(2,4);
-
         graph.addUndirectedEdge(3,4);
+
         graph.addDirectedEdge(3,7);
 
         graph.addUndirectedEdge(4,5);
-
         graph.addUndirectedEdge(5,6);
         graph.addUndirectedEdge(5,7);
-
         graph.addUndirectedEdge(6,7);
         graph.addUndirectedEdge(6,8);
-
         graph.addUndirectedEdge(7,9);
         graph.addUndirectedEdge(7,8);
-
         graph.addUndirectedEdge(8,9);
         graph.addUndirectedEdge(8,10);
-
         graph.addUndirectedEdge(9,10);
 
         return graph;

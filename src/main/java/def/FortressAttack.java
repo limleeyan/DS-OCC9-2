@@ -4,7 +4,7 @@ import java.util.*;
 
 public class FortressAttack {
     private int V;
-    private List<List<Edge>> adj;
+    private List<List<WeightedEdge>> adj;
 
     public FortressAttack() {
 //        V = vertices;
@@ -23,8 +23,8 @@ public class FortressAttack {
 
 
     public void addWeightedEdge(int source, int destination, int distance, String roadType) {
-        adj.get(source).add(new Edge(destination, distance, roadType));
-        adj.get(destination).add(new Edge(source, distance, roadType));
+        adj.get(source).add(new WeightedEdge(destination, distance, roadType));
+        adj.get(destination).add(new WeightedEdge(source, distance, roadType));
     }
 
     public void shortestTime(int fortress) {
@@ -46,7 +46,7 @@ public class FortressAttack {
                 int u = node.vertex;
                 int currentGeneral = node.general;
 
-                for (Edge edge : adj.get(u)) {
+                for (WeightedEdge edge : adj.get(u)) {
                     int v = edge.destination;
                     int distance = edge.distance;
                     String roadType = edge.roadType;
@@ -124,31 +124,6 @@ public class FortressAttack {
             if (i != path.size() - 1) {
                 System.out.print(" -> ");
             }
-        }
-    }
-
-
-    private static class Edge {
-        int destination;
-        int distance;
-        String roadType;
-
-        public Edge(int destination, int distance, String roadType) {
-            this.destination = destination;
-            this.distance = distance;
-            this.roadType = roadType;
-        }
-    }
-
-    private static class Node {
-        int vertex;
-        double time;
-        int general;
-
-        public Node(int vertex, double time, int general) {
-            this.vertex = vertex;
-            this.time = time;
-            this.general = general;
         }
     }
 
