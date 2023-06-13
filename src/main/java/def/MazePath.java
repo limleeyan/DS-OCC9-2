@@ -80,9 +80,7 @@ class Maze {
 
 public class MazePath {
     public MazePath() {
-        //int[][] maze = ReadMatrixFromFile.matrixFile2IntArray("src\\main\\java\\def\\CaoCaoMaze.txt");
-        int[][] maze = ReadMatrixFromFile.matrixFile2IntArray("DS-OCC9-2-1//src//main//java//def//CaoCaoMaze.txt");
-
+        int[][] maze = ReadMatrixFromFile.matrixFile2IntArray("src\\main\\java\\def\\CaoCaoMaze.txt");
         int entryRow = -1;
         int entryCol = -1;
         int exitRow = -1;
