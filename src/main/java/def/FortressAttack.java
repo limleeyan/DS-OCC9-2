@@ -73,7 +73,7 @@ public class FortressAttack {
 
     private double getGeneralSpeed(String roadType, int general) {
         switch (roadType) {
-            case "Flat Road":
+            case "Flat Road" -> {
                 if (general == 0) { // Cavalry
                     return 2.0 * 3;
                 } else if (general == 1) { // Archer
@@ -81,7 +81,8 @@ public class FortressAttack {
                 } else { // Infantry
                     return 1.0 * 2;
                 }
-            case "Forest":
+            }
+            case "Forest" -> {
                 if (general == 0) { // Cavalry
                     return 2.0 * 0.8;
                 } else if (general == 1) { // Archer
@@ -89,7 +90,8 @@ public class FortressAttack {
                 } else { // Infantry
                     return 1.0 * 2.5;
                 }
-            case "Swamp":
+            }
+            case "Swamp" -> {
                 if (general == 0) { // Cavalry
                     return 2.0 * 0.3;
                 } else if (general == 1) { // Archer
@@ -97,7 +99,8 @@ public class FortressAttack {
                 } else { // Infantry
                     return 1.0 * 1;
                 }
-            case "Plank Road":
+            }
+            case "Plank Road" -> {
                 if (general == 0) { // Cavalry
                     return 2.0 * 0.5;
                 } else if (general == 1) { // Archer
@@ -105,8 +108,8 @@ public class FortressAttack {
                 } else { // Infantry
                     return 1.0 * 0.5;
                 }
-            default:
-                return 1.0; // Default speed if terrain is not recognized
+            }
+            default -> {return 1.0;} // Default speed if terrain is not recognized
         }
     }
 

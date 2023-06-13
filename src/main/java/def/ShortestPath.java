@@ -1,6 +1,7 @@
 package def;
 import java.util.*;
 public class ShortestPath {
+    static Scanner sc = new Scanner(System.in);
     private  static List<List<Integer>> paths;
     private static int destination;
 
@@ -14,7 +15,6 @@ public class ShortestPath {
         }
         System.out.println();
 
-        Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.print("Enter the base camp for the enemy base camp (Press -1 exit to Basic Feature Menu): ");
             destination = sc.nextInt();

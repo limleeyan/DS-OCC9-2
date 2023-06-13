@@ -69,7 +69,7 @@ public class Main2 {
                 case 4 -> new FoodHarvesting();
                 case 5 -> new CaesarCipher();
                 case 6 -> new MatrixCluster();
-                case 7 -> new MazePath2();
+                case 7 -> new MazePath();
                 case 8 -> {
                     String[] close = {"close"};
                     JOptionPane.showOptionDialog(null,
@@ -95,7 +95,7 @@ public class Main2 {
                     "1. Dynamic Arrow Borrowing\n" +
                             "2. Advanced Text Encryption\n" +
                             "3. Food Harvesting I\n" +
-                            "<WIP> 4. Enemy Fortress Attack Simulation\n" +
+                            "4. Enemy Fortress Attack Simulation\n" +
                             "Exit",
                     "Advanced Features",
                     JOptionPane.DEFAULT_OPTION,
@@ -108,7 +108,7 @@ public class Main2 {
                 case 0 -> new BorrowingArrow2();
                 case 1 -> new TextConverterSecure();
                 case 2 -> new FoodHarvestingI();
-                // case 3 -> new AttackSimulation();
+                case 3 -> new FortressAttackSimulation();
                 case 4 -> {
                     String[] close = {"close"};
                     JOptionPane.showOptionDialog(null,

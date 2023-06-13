@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FoodHarvestingI {
+    static Scanner sc = new Scanner(System.in);
+    static Scanner sc2 = new Scanner(System.in);
     private static double[] buff = new double[2];
     private static String[] teamType = new String[2];
 
@@ -16,7 +18,6 @@ public class FoodHarvestingI {
             System.out.println("-1. Exit");
             System.out.print("Choice: ");
 
-            Scanner sc = new Scanner(System.in);
             int input = sc.nextInt();
 
             if (input==-1)
@@ -49,15 +50,13 @@ public class FoodHarvestingI {
     }
 
     private static void foodSelectGenerals(int food, ArrayList<TreeNode> generals){
-        Scanner sc = new Scanner(System.in);
-
         // let user choose generals
         System.out.println("1. Xu Sheng\t\t2. Zhu Ge Jin\t3. Lu Su\t\t4. Tai Shi Ci\t5. Xiao Qiao\n" +
                 "6. Da Qiao\t\t7. Zhou Tai\t\t8. Gan Ning\t\t9. Lu Meng\t\t10. Huang Gai");
         System.out.print("Please select 3 generals by entering their index: ");
         int[] index = new int[3];
         for (int i=0; i<index.length; i++){
-            index[i] = sc.nextInt();
+            index[i] = sc2.nextInt();
         }
 
         ArrayList<TreeNode> selectedGenerals = new ArrayList<>();

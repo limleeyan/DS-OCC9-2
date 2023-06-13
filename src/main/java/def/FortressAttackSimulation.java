@@ -3,13 +3,8 @@ package def;
 import java.util.Scanner;
 
 public class FortressAttackSimulation {
-
-
+    static Scanner sc = new Scanner(System.in);
     public FortressAttackSimulation() {
-
-    }
-
-    public static void main(String[] args) {
         FortressAttack weightedGraph = new FortressAttack();
 
         weightedGraph.initializeGraph(11);
@@ -40,12 +35,9 @@ public class FortressAttackSimulation {
 
         weightedGraph.addWeightedEdge(9, 10, 18, "Flat Road");
 
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the destination (enemy fortress) node: ");
-        int enemyFortress = scanner.nextInt();
-        scanner.close();
+        int enemyFortress = sc.nextInt();
 
         weightedGraph.shortestTime(enemyFortress);
     }
-
 }
