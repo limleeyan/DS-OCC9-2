@@ -3,17 +3,18 @@ package def;
 import java.util.*;
 
 public class FoodHarvesting {
+    static Scanner sc = new Scanner(System.in);
+    static Scanner sc2 = new Scanner(System.in);
     private static Graph<Integer> foodGraph = new Graph<>();
     static List<Integer> nodesWithoutFood = new ArrayList<>();
     private static List<List<Integer>> paths = new ArrayList<>();
 
     public FoodHarvesting() {
         insertGraph();
-        Scanner sc = new Scanner(System.in);
 
         while (true) {
             nodesWithoutFood.clear();
-            System.out.print("Enter node without food (0 to proceed, -1 to exit feature): ");
+            System.out.print("\nEnter node without food (0 to proceed, -1 to exit feature): ");
             int input;
             while ((input = sc.nextInt()) != 0 && input!=-1) {
                 if (input != 0)
@@ -58,12 +59,11 @@ public class FoodHarvesting {
 
     public FoodHarvesting(boolean isFood){
         insertGraph();
-        Scanner sc = new Scanner(System.in);
         nodesWithoutFood.clear();
 
-        System.out.print("Enter node without food (0 to proceed, -1 to exit feature): ");
+        System.out.print("\nEnter node without food (0 to proceed, -1 to exit feature): ");
         int input;
-        while ((input = sc.nextInt()) != 0 && input!=-1) {
+        while ((input = sc2.nextInt()) != 0 && input!=-1) {
             if (input != 0)
                 nodesWithoutFood.add(input);
         }

@@ -2,8 +2,9 @@ package def;
 
 import java.util.*;
 public class CaesarCipher{
+    static Scanner input = new Scanner(System.in);
     public CaesarCipher() {
-        Scanner input = new Scanner(System.in);
+        System.out.println("\nCaesar Cipher");
         System.out.print("Text: ");
         String text = input.nextLine();
         System.out.print("Shift: ");
