@@ -4,10 +4,10 @@ import java.util.Random;
 import java.util.Stack;
 
 public class StrawMen{
-    private int total; //total number of straw men
-    private Random random = new Random(); //generate random number
-    Stack<Integer> numOfStrawmen = new Stack<>(); //represent number of straw men remaining at different efficiency levels.
-    Stack<Integer> efficiency = new Stack<>(); // representing the efficiency levels
+    private int total;
+    private Random random = new Random();
+    Stack<Integer> numOfStrawmen = new Stack<>();
+    Stack<Integer> efficiency = new Stack<>();
 
     public StrawMen(int total) {
         efficiency.push(40); //40% efficiency

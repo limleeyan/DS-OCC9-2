@@ -27,13 +27,9 @@ public class TextConverterSecure {
     }
 
     private static String encrypt(String plaintext, SecretKeySpec secretKey) throws Exception {
-        //A cipher instance is created using the "AES/ECB/PKCS5Padding" transformation, specifying the AES algorithm, ECB mode, and PKCS5Padding padding scheme
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        //The cipher is initialized with the encryption mode and the secretKey
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        //The doFinal method is used to encrypt the bytes of the plaintext
         byte[] encryptedBytes = cipher.doFinal(plaintext.getBytes());
-        //The encrypted bytes are encoded to a Base64 string using Base64.getEncoder()
         return Base64.getEncoder().encodeToString(encryptedBytes);
     }
 

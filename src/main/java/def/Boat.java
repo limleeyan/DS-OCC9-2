@@ -7,7 +7,7 @@ public class Boat{
     public Boat() {
     }
 
-    public Boat(int left, int right, int front, int back) { //representing the number of straw men for each direction
+    public Boat(int left, int right, int front, int back) {
         this.left = new StrawMen(left);
         this.right = new StrawMen(right);
         this.front = new StrawMen(front);
