@@ -96,6 +96,7 @@ public class SoldierArrangement {
         for (TreeNode soldier : soldiers) {
             System.out.println(soldier.getArmyData().getName());
         }
+        System.out.println();
     }
 
     public static void sortedGeneralAbilities() {
@@ -117,33 +118,43 @@ public class SoldierArrangement {
             switch (choice) {
                 case 0 -> {
                     sortStrength();
+                    System.out.println("Sort by Strength:");
                     for (TreeNode general : generals) {
                         System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getStrength());
                     }
+                    System.out.println();
                 }
                 case 1 -> {
                     sortLeadership();
+                    System.out.println("Sort by Leadership:");
                     for (TreeNode general : generals) {
                         System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getLeadership());
                     }
+                    System.out.println();
                 }
                 case 2 -> {
                     sortIntelligence();
+                    System.out.println("Sort by Intelligence:");
                     for (TreeNode general : generals) {
                         System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getIntelligence());
                     }
+                    System.out.println();
                 }
                 case 3 -> {
                     sortPolitic();
+                    System.out.println("Sort by Politic:");
                     for (TreeNode general : generals) {
                         System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getPolitic());
                     }
+                    System.out.println();
                 }
                 case 4 -> {
                     sortHitpoint();
+                    System.out.println("Sort by Hit Point:");
                     for (TreeNode general : generals) {
                         System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getHitpoint());
                     }
+                    System.out.println();
                 }
                 case 5 -> {
                     String[] close = {"close"};
