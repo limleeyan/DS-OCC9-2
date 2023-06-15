@@ -101,6 +101,7 @@ public class MazePath {
         Maze mazeSolver = new Maze(maze);
         List<Cell> shortestPath = mazeSolver.findShortestPath(entryRow, entryCol, exitRow, exitCol);
 
+        System.out.println();
         if (shortestPath != null) {
             System.out.println("Shortest path found:");
             for (int i = 0; i < maze.length; i++) {

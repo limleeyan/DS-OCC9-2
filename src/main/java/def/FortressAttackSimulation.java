@@ -35,6 +35,7 @@ public class FortressAttackSimulation {
 
         weightedGraph.addWeightedEdge(9, 10, 18, "Flat Road");
 
+        System.out.println("\nFortress Attack Simulation");
         System.out.print("Enter the destination (enemy fortress) node: ");
         int enemyFortress = sc.nextInt();
 

@@ -19,6 +19,7 @@ public class BorrowingArrow {
     }
 
     public void NumberOfStrawmen() {
+        System.out.println("\nBorrowing Arrow");
         System.out.println("Number of straw men");
         System.out.print("Front: ");
         ship.setFront(sc.nextInt());

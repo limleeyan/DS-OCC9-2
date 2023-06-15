@@ -2,6 +2,7 @@ package def;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class FoodHarvestingI {
     static Scanner sc = new Scanner(System.in);
@@ -12,16 +13,19 @@ public class FoodHarvestingI {
 //    public static void main(String[] args) {
     public FoodHarvestingI() {
         while (true) {
-            System.out.println("-------------------- Food Harvesting I --------------------");
-            System.out.println("1. Maximum Food Production");
-            System.out.println("2. Food Production by Selected Generals");
-            System.out.println("-1. Exit");
-            System.out.print("Choice: ");
+            String[] options = {"1", "2", "Exit"};
+            var select = JOptionPane.showOptionDialog(null,
+                    "1. Maximum Food Production\n" +
+                            "2. Food Production by Selected Generals\n" +
+                            "Exit",
+                    "Food Harvesting I",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]);
 
-            int input = sc.nextInt();
-
-            if (input==-1)
-                break;
+            if (select == 2) return;
 
             new SoldierArrangement(true);
             ArrayList<TreeNode> generals = SoldierArrangement.generals;
@@ -31,10 +35,9 @@ public class FoodHarvestingI {
             int nodeWithFood = 10 - FoodHarvesting.nodesWithoutFood.size();
             int food = nodeWithFood * 100;
 
-            switch (input) {
-                case 1 -> maxFoodProduction(food, generals);
-                case 2 -> foodSelectGenerals(food, generals);
-                default -> System.out.println("Invalid input");
+            switch (select) {
+                case 0 -> maxFoodProduction(food, generals);
+                case 1 -> foodSelectGenerals(food, generals);
             }
         }
     }

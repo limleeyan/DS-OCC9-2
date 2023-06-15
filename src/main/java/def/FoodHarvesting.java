@@ -14,7 +14,7 @@ public class FoodHarvesting {
 
         while (true) {
             nodesWithoutFood.clear();
-            System.out.print("Enter node without food (0 to proceed, -1 to exit feature): ");
+            System.out.print("\nEnter node without food (0 to proceed, -1 to exit feature): ");
             int input;
             while ((input = sc.nextInt()) != 0 && input!=-1) {
                 if (input != 0)
@@ -61,7 +61,7 @@ public class FoodHarvesting {
         insertGraph();
         nodesWithoutFood.clear();
 
-        System.out.print("Enter node without food (0 to proceed, -1 to exit feature): ");
+        System.out.print("\nEnter node without food (0 to proceed, -1 to exit feature): ");
         int input;
         while ((input = sc2.nextInt()) != 0 && input!=-1) {
             if (input != 0)

@@ -11,6 +11,7 @@ public class BorrowingArrow2 {
     ArrayList<Integer> arrow = new ArrayList<>();
     ArrayList<String> direction = new ArrayList<>();
     ArrayList<Integer> arrowReceived = new ArrayList<>();
+    static Scanner sc = new Scanner(System.in);
     int wave, totalArrow = 0;
 
     public BorrowingArrow2() {
@@ -18,7 +19,7 @@ public class BorrowingArrow2 {
     }
 
     public void NumberOfStrawmen() {
-        Scanner sc = new Scanner(System.in);
+        System.out.println("\nDynamic Borrowing Arrow");
         System.out.println("Number of straw men");
         System.out.print("Front: ");
         ship.setFront(sc.nextInt());

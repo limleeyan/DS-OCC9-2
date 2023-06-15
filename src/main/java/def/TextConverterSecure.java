@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class TextConverterSecure {
     static Scanner sc = new Scanner(System.in);
     public TextConverterSecure() throws Exception {
+        System.out.println("\nAdvanced Text Encryption");
         //enter a plaintext string
         System.out.print("Plain text: ");
         String plaintext = sc.nextLine();

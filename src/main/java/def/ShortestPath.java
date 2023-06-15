@@ -7,7 +7,7 @@ public class ShortestPath {
 
     public ShortestPath() {
         Graph<Integer> graph1 = createGraph();
-        System.out.println("The number of vertices in graph: " + graph1.getSize());
+        System.out.println("\nThe number of vertices in graph: " + graph1.getSize());
 
         System.out.println("Vertices: ");
         for (int i = 0; i < graph1.getSize(); i++) {
@@ -20,6 +20,9 @@ public class ShortestPath {
             destination = sc.nextInt();
             if (destination == -1) {
                 break;
+            } else if (destination <= 0 || destination >= graph1.getSize()) {
+                System.out.println("Invalid input!");
+                continue;
             }
             //Find all possible paths using BFS
             paths = new ArrayList<>();

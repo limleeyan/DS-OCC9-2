@@ -1,11 +1,9 @@
 package def;
 
-import java.util.Scanner;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class SoldierArrangement {
-    static Scanner in = new Scanner(System.in);
-    static Scanner in2 = new Scanner(System.in); // for string input
     static ArrayList<TreeNode> generals = new ArrayList<>();
     static ArrayList<TreeNode> sortedPolitics = new ArrayList<>();
     static ArrayList<TreeNode> sortedIntelligence = new ArrayList<>();
@@ -16,26 +14,39 @@ public class SoldierArrangement {
         for (int i = 3; i < Army.army.size(); i++) {
             generals.add(new TreeNode(Army.army.get(i)));
         }
-        boolean yes;
         do {
-            yes = true;
-            System.out.println("\n-------------------Choose your army: --------------------");
-            System.out.println("1. Soldier Arrangement");
-            System.out.println("2. Sorted General's Abilities");
-            System.out.println("3. View 1 General's Abilities");
-            System.out.println("4. Search by ability value");
-            System.out.println("-1. Exit");
-            System.out.print("Choice: ");
-            int choice = in.nextInt();
-            switch (choice) {
-                case 1 -> soldierArrangement();
-                case 2 -> sortedGeneralAbilities();
-                case 3 -> viewGeneralAbilities();
-                case 4 -> searchByAbilityValue();
-                case -1 -> yes = false;
-                default -> System.out.println("Invalid input");
+            String[] options1 = {"1", "2", "3", "4", "Exit"};
+            var select = JOptionPane.showOptionDialog(null,
+                    "1. Soldier Arrangement\n" +
+                            "2. Sorted General's Abilities\n" +
+                            "3. View 1 General's Abilities\n" +
+                            "4. Search by ability value\n" +
+                            "Exit",
+                    "Soldier Arrangement",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options1,
+                    options1[0]);
+            switch (select) {
+                case 0 -> soldierArrangement();
+                case 1 -> sortedGeneralAbilities();
+                case 2 -> viewGeneralAbilities();
+                case 3 -> searchByAbilityValue();
+                case 4 -> {
+                    String[] close = {"close"};
+                    JOptionPane.showOptionDialog(null,
+                            "See you again!",
+                            "Three Kingdoms",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE,
+                            null,
+                            close,
+                            close[0]);
+                    return;
+                }
             }
-        } while (yes);
+        } while (true);
     }
 
     public SoldierArrangement(boolean isFood){
@@ -49,19 +60,37 @@ public class SoldierArrangement {
     }
 
     public static void soldierArrangement() {
-        System.out.println("\n-------------------Soldier Arrangement: --------------------");
-        System.out.println("Enter attribute: ");
-        System.out.println("1. Strength");
-        System.out.println("2. Leadership");
-        System.out.println("3. Intelligence");
-        System.out.println("4. Politic");
-        System.out.println("5. Hitpoint");
-        System.out.print("Choice: ");
-        int choice = in.nextInt();
+        String[] options2 = {"1", "2", "3", "4", "5"};
+        var sChoice = JOptionPane.showOptionDialog(null,
+                "1. Strength\n" +
+                        "2. Leadership\n" +
+                        "3. Intelligence\n" +
+                        "4. Politic\n" +
+                        "5. Hitpoint",
+                "Soldier Arrangement",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options2,
+                options2[0]);
+        int choice = sChoice + 1;
 
-        System.out.print("Enter tier requirement (S/A/B/C): ");
-        String tier = in.next();
-
+        String[] options3 = {"S", "A", "B", "C"};
+        var sTier = JOptionPane.showOptionDialog(null,
+                "Enter tier requirement (S/A/B/C): ",
+                "Soldier Arrangement",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options3,
+                options3[0]);
+        String tier = "";
+        switch (sTier){
+            case 0 -> tier = "S";
+            case 1 -> tier = "A";
+            case 2 -> tier = "B";
+            case 3 -> tier = "C";
+        }
         ArrayList<TreeNode> soldiers = suggestGeneralsByAbility(choice, tier);
         System.out.println("Suggested Generals: ");
         for (TreeNode soldier : soldiers) {
@@ -70,92 +99,106 @@ public class SoldierArrangement {
     }
 
     public static void sortedGeneralAbilities() {
-        boolean yes;
         do {
-            yes = true;
-            System.out.println("\n-----------------Sort by: ----------------------");
-            System.out.println("1. Strength");
-            System.out.println("2. Leadership");
-            System.out.println("3. Intelligence");
-            System.out.println("4. Politic");
-            System.out.println("5. Hitpoint");
-            System.out.println("-1. Exit");
-            System.out.print("Choice: ");
-            int choice = in.nextInt();
+            String[] options2 = {"1", "2", "3", "4", "5", "Exit"};
+            var choice = JOptionPane.showOptionDialog(null,
+                    "1. Strength\n" +
+                            "2. Leadership\n" +
+                            "3. Intelligence\n" +
+                            "4. Politic\n" +
+                            "5. Hitpoint\n" +
+                            "Exit",
+                    "Sorted General Abilities",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options2,
+                    options2[0]);
             switch (choice) {
-                case 1 -> {
+                case 0 -> {
                     sortStrength();
                     for (TreeNode general : generals) {
                         System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getStrength());
                     }
                 }
-                case 2 -> {
+                case 1 -> {
                     sortLeadership();
                     for (TreeNode general : generals) {
                         System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getLeadership());
                     }
                 }
-                case 3 -> {
+                case 2 -> {
                     sortIntelligence();
                     for (TreeNode general : generals) {
                         System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getIntelligence());
                     }
                 }
-                case 4 -> {
+                case 3 -> {
                     sortPolitic();
                     for (TreeNode general : generals) {
                         System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getPolitic());
                     }
                 }
-                case 5 -> {
+                case 4 -> {
                     sortHitpoint();
                     for (TreeNode general : generals) {
                         System.out.println(general.getArmyData().getName() + " " + general.getArmyData().getHitpoint());
                     }
                 }
-                case -1 -> yes = false;
-                default -> System.out.println("Invalid input");
+                case 5 -> {
+                    String[] close = {"close"};
+                    JOptionPane.showOptionDialog(null,
+                            "See you again!",
+                            "Three Kingdoms",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE,
+                            null,
+                            close,
+                            close[0]);
+                    return;
+                }
             }
-        } while(yes);
+        } while(true);
     }
 
     public static void viewGeneralAbilities() {
-        boolean yes;
         do {
-            yes = true;
-            System.out.println("\nChoose a general: (Enter \"Exit\" to exit)");
-            String name = in2.nextLine();
+            var name = JOptionPane.showInputDialog("Enter the value you want to search for: ");
             if (name.equals("Exit")) {
-                yes = false;
+                return;
             }
             boolean search = false;
             for (TreeNode general : generals) {
                 if (general.getArmyData().getName().equals(name)) {
-                    System.out.println(general.getArmyData().getStats());
+                    System.out.println("\n" + general.getArmyData().getStats());
                     search = true;
                 }
 
             }
-            if (search) {
-                System.out.println("Press enter to continue");
-            } else {
-                System.out.println("General not found. Press enter to continue.");
+            if (!search) {
+                System.out.println("\nGeneral not found. Press enter to continue.");
             }
-        } while (yes);
+        } while (true);
     }
 
     public static void searchByAbilityValue() {
-        System.out.println("Enter the attribute you want to search by: ");
-        System.out.println("1. Leadership");
-        System.out.println("2. Strength");
-        System.out.println("3. Intelligence");
-        System.out.println("4. Politic");
-        System.out.println("5. Hitpoint");
-        System.out.print("Choice: ");
-        int choice = in.nextInt();
-        System.out.println("Enter the value you want to search for: ");
-        System.out.print("Value: ");
-        int target = in.nextInt();
+        String[] options2 = {"1", "2", "3", "4", "5"};
+        var sChoice = JOptionPane.showOptionDialog(null,
+                "1. Strength\n" +
+                        "2. Leadership\n" +
+                        "3. Intelligence\n" +
+                        "4. Politic\n" +
+                        "5. Hitpoint",
+                "Soldier Arrangement",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options2,
+                options2[0]);
+        int choice = sChoice + 1;
+
+        var sTarget = JOptionPane.showInputDialog("Enter the value you want to search for: ");
+        int target = Integer.parseInt(sTarget);
 
         // binary search
         int low = 0;
@@ -187,11 +230,11 @@ public class SoldierArrangement {
                     sortHitpoint();
                     value = generals.get(middle).getArmyData().getHitpoint();
                 }
-                default -> System.out.println("Unexpected value: " + choice);
             }
 
             if(value == target){
-                System.out.println(generals.get(middle).getArmyData().getName() + " " + value);
+                System.out.println("\nAttribute: " + choice + " Value: " + target);
+                System.out.println(generals.get(middle).getArmyData().getName() + " " + value + "found.");
                 search = true;
                 break;
             } else if(value > target){
@@ -201,6 +244,7 @@ public class SoldierArrangement {
             }
         }
         if (!search){
+            System.out.println("\nAttribute: " + choice + " Value: " + target);
             System.out.println("Value not found");
         }
     }
