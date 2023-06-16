@@ -79,7 +79,7 @@ class Maze {
 
             if (isValid(newRow, newCol) && distances[newRow][newCol] < minDist) {
                 minDist = distances[newRow][newCol];
-                //System.out.println(minDist);
+                //System.out.println("Iteration: Row=" + newRow + ", Col=" + newCol + ", minDist=" + minDist);
                 minNeig = new Cell(newRow, newCol, minDist);
             }
         }
@@ -91,7 +91,9 @@ class Maze {
 public class MazePath {
     public MazePath() {
         int[][] maze = ReadMatrixFromFile.matrixFile2IntArray("src\\main\\java\\def\\CaoCaoMaze.txt");
-        
+        //int[][] maze = ReadMatrixFromFile.matrixFile2IntArray("C:\\Users\\eefei\\Desktop\\SEM2 DS Assignment\\DS-OCC9-2-1\\src\\main\\java\\def\\CaoCaoMaze.txt");
+    
+
         int entryRow = -1;
         int entryCol = -1;
         int exitRow = -1;
@@ -112,7 +114,6 @@ public class MazePath {
         Maze mazeSolver = new Maze(maze);
         List<Cell> shortestPath = mazeSolver.findShortestPath(entryRow, entryCol, exitRow, exitCol);
 
-        System.out.println();
         if (shortestPath != null) {
             System.out.println("Shortest path found:");
             for (int i = 0; i < maze.length; i++) {
