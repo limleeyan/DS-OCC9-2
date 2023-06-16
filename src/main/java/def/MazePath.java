@@ -138,7 +138,7 @@ public class MazePath {
         }
 
     }
-    public static void main(String[] args) {
-        new MazePath();
-    }
+    // public static void main(String[] args) {
+    //     new MazePath();
+    // }
 }
