@@ -22,7 +22,7 @@ public class FortressAttack {
         adj.get(destination).add(new WeightedEdge(source, distance, roadType));
     }
 
-    public void adDirectedWeightedEdge(int source, int destination, int distance, String roadType) {
+    public void addDirectedWeightedEdge(int source, int destination, int distance, String roadType) {
         adj.get(source).add(new WeightedEdge(destination, distance, roadType));
     }
 

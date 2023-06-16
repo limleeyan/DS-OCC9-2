@@ -21,7 +21,7 @@ public class FortressAttackSimulation {
         weightedGraph.addUndirectedWeightedEdge(2, 4, 10, "Swamp");
 
         weightedGraph.addUndirectedWeightedEdge(3, 4, 12, "Swamp");
-        weightedGraph.adDirectedWeightedEdge(3, 7, 28, "Plank Road");
+        weightedGraph.addDirectedWeightedEdge(3, 7, 28, "Plank Road");
 
         weightedGraph.addUndirectedWeightedEdge(4, 5, 12, "Swamp");
 
