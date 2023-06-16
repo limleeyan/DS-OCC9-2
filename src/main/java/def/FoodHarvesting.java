@@ -18,14 +18,35 @@ public class FoodHarvesting {
 
         while (true) {
             nodesWithoutFood.clear();
-            System.out.print("\nEnter node without food (0 to proceed, -1 to exit feature): ");
-            int input;
-            while ((input = sc.nextInt()) != 0 && input!=-1) {
-                if (input != 0)
-                    nodesWithoutFood.add(input);
+            System.out.print("\nEnter node(s) without food (-1 to exit feature): ");
+            String inputLine = sc.nextLine();
+            String[] inputs = inputLine.split("\\s+");
+
+            boolean validInput = true;
+
+            for (String input : inputs) {
+                try {
+                    int value = Integer.parseInt(input);
+                    if (value == -1) {
+                        validInput = true;
+                        break;
+                    } else if (value < 1 || value > 10) {
+                        System.out.println("Invalid input! Please enter a value between 1 and 10.");
+                        validInput = false;
+                    } else {
+                        nodesWithoutFood.add(value);
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input! Please enter a valid integer value.");
+                    validInput = false;
+                }
             }
 
-            if (input==-1)
+            if (!validInput) {
+                continue;
+            }
+
+            if (inputLine.contains("-1"))
                 break;
 
             // if all nodes contain no food
@@ -68,12 +89,40 @@ public class FoodHarvesting {
         ImageIcon graphImage = new ImageIcon("src/main/resources/GraphImage.PNG");
         JOptionPane.showMessageDialog(null,null,"Graph",JOptionPane.INFORMATION_MESSAGE,graphImage);
 
-        System.out.print("\nEnter node without food (0 to proceed, -1 to exit feature): ");
-        int input;
-        while ((input = sc2.nextInt()) != 0 && input!=-1) {
-            if (input != 0)
-                nodesWithoutFood.add(input);
+        boolean validInput = false;
+        while (!validInput) {
+            System.out.print("\nEnter node(s) without food (-1 to exit feature): ");
+            String inputLine = sc.nextLine();
+            String[] inputs = inputLine.split("\\s+");
+
+            validInput = true;
+
+            for (String input : inputs) {
+                try {
+                    int value = Integer.parseInt(input);
+                    if (value == -1) {
+                        return;
+                    } else if (value < 1 || value > 10) {
+                        System.out.println("Invalid input! Please enter a value between 1 and 10.");
+                        validInput = false;
+                        break;
+                    } else {
+                        nodesWithoutFood.add(value);
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input! Please enter a valid integer value.");
+                    validInput = false;
+                    break;
+                }
+            }
         }
+
+//        System.out.print("\nEnter node without food (0 to proceed, -1 to exit feature): ");
+//        int input;
+//        while ((input = sc2.nextInt()) != 0 && input!=-1) {
+//            if (input != 0)
+//                nodesWithoutFood.add(input);
+//        }
 
         // if all nodes contain no food
         ArrayList<Integer> list = new ArrayList<>();

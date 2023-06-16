@@ -10,7 +10,6 @@ public class FoodHarvestingI {
     private static double[] buff = new double[2];
     private static String[] teamType = new String[2];
 
-//    public static void main(String[] args) {
     public FoodHarvestingI() {
         while (true) {
             String[] options = {"1", "2", "Exit"};
@@ -57,16 +56,27 @@ public class FoodHarvestingI {
         System.out.println("1. Xu Sheng\t\t2. Zhu Ge Jin\t3. Lu Su\t\t4. Tai Shi Ci\t5. Xiao Qiao\n" +
                 "6. Da Qiao\t\t7. Zhou Tai\t\t8. Gan Ning\t\t9. Lu Meng\t\t10. Huang Gai");
 
-        ArrayList<Integer> selectedIndex = new ArrayList<>();
         int[] index = new int[3];
         boolean isSame = false;
+        boolean invalidInput = false;
+
         while (true) {
             System.out.print("Please select 3 generals by entering their index: ");
+            invalidInput = false;
+
             for (int i = 0; i < index.length; i++) {
                 index[i] = sc2.nextInt();
+                if (index[i] < 1 || index[i] > 10) {
+                    invalidInput = true;
+                }
             }
 
-            if (index[0]==index[1] || index[0]==index[2] || index[1]==index[2])
+            if (invalidInput) {
+                System.out.println("Invalid input. Please enter values between 1 and 10.");
+                continue; // Prompt the user to enter again
+            }
+
+            if (index[0] == index[1] || index[0] == index[2] || index[1] == index[2])
                 isSame = true;
             else
                 isSame = false;
