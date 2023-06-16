@@ -15,6 +15,7 @@ class Maze {
         int[][] distances = new int[numRows][numCols];
         boolean[][] visited = new boolean[numRows][numCols];
 
+
         PriorityQueue<Cell> queue = new PriorityQueue<>(Comparator.comparingInt(cell -> cell.distance));
         queue.offer(new Cell(entryRow, entryCol, 0));
 
@@ -28,7 +29,7 @@ class Maze {
                 List<Cell> path = new ArrayList<>();
                 while (current != null) {
                     path.add(0, current);
-                    current = distances[current.row][current.col] == 0 ? null : getNeighborWithDistance(distances, current);
+                    current = distances[current.row][current.col] == 0 ? null : getNearestNeighs(distances, current);
                 }
                 return path;
             }
@@ -47,6 +48,14 @@ class Maze {
                     }
                 }
             }
+            // // Print distances array
+            // System.out.println("Distances array:");
+            // for (int i = 0; i < numRows; i++) {
+            //     for (int j = 0; j < numCols; j++) {
+            //         System.out.print(distances[i][j] + " ");
+            //     }
+            //     System.out.println();
+            // }
         }
 
         return null; // No path found
@@ -58,29 +67,31 @@ class Maze {
         return row >= 0 && row < numRows && col >= 0 && col < numCols && maze[row][col] != 0;
     }
 
-    private Cell getNeighborWithDistance(int[][] distances, Cell cell) {
+    private Cell getNearestNeighs(int[][] distances, Cell cell) {
         int row = cell.row;
         int col = cell.col;
-        int minDistance = Integer.MAX_VALUE;
-        Cell minNeighbor = null;
+        int minDist = Integer.MAX_VALUE;
+        Cell minNeig = null;
 
         for (int[] dir : DIRECTIONS) {
             int newRow = row + dir[0];
             int newCol = col + dir[1];
 
-            if (isValid(newRow, newCol) && distances[newRow][newCol] < minDistance) {
-                minDistance = distances[newRow][newCol];
-                minNeighbor = new Cell(newRow, newCol, minDistance);
+            if (isValid(newRow, newCol) && distances[newRow][newCol] < minDist) {
+                minDist = distances[newRow][newCol];
+                //System.out.println(minDist);
+                minNeig = new Cell(newRow, newCol, minDist);
             }
         }
 
-        return minNeighbor;
+        return minNeig;
     }
 }
 
 public class MazePath {
     public MazePath() {
         int[][] maze = ReadMatrixFromFile.matrixFile2IntArray("src\\main\\java\\def\\CaoCaoMaze.txt");
+        
         int entryRow = -1;
         int entryCol = -1;
         int exitRow = -1;
@@ -125,7 +136,7 @@ public class MazePath {
         }
 
     }
-    // public static void main(String[] args) {
-    //     new MazePath();
-    // }
+    public static void main(String[] args) {
+        new MazePath();
+    }
 }
