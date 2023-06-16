@@ -17,10 +17,12 @@ public class FortressAttack {
             adj.add(new ArrayList<>());
     }
 
-
-    public void addWeightedEdge(int source, int destination, int distance, String roadType) {
+    public void addUndirectedWeightedEdge(int source, int destination, int distance, String roadType) {
         adj.get(source).add(new WeightedEdge(destination, distance, roadType));
         adj.get(destination).add(new WeightedEdge(source, distance, roadType));
+    }
+    public void adDirectedWeightedEdge(int source, int destination, int distance, String roadType) {
+        adj.get(source).add(new WeightedEdge(destination, distance, roadType));
     }
 
     public void shortestTime(int fortress) {
@@ -61,7 +63,7 @@ public class FortressAttack {
         for (int general = 0; general < 3; general++) {
             System.out.printf("Shortest time for %s to reach the enemy fortress from Node 1: %.2f hours\n", generalNames[general], time[fortress][general]);
             System.out.print("Shortest path: ");
-            printPath(prev, 1, fortress, general);
+            printPath(prev, fortress, general);
             System.out.println();
         }
     }
@@ -109,7 +111,7 @@ public class FortressAttack {
         }
     }
 
-    private void printPath(int[][] prev, int source, int fortress, int general) {
+    private void printPath(int[][] prev, int fortress, int general) {
         List<Integer> path = new ArrayList<>();
         int current = fortress;
         while (current != -1) {

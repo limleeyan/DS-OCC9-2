@@ -9,19 +9,13 @@ public class ShortestPath {
         Graph<Integer> graph1 = createGraph();
         System.out.println("\nThe number of vertices in graph: " + graph1.getSize());
         System.out.println();
-//
-//        System.out.println("Vertices: ");
-//        for (int i = 0; i < graph1.getSize(); i++) {
-//            System.out.print(i + "- " + graph1.getVertex(i) + "\t");
-//        }
-//        System.out.println();
 
         while (true) {
             System.out.print("Enter the base camp for the enemy base camp (Press -1 exit to exit feature): ");
             destination = sc.nextInt();
             if (destination == -1) {
                 break;
-            } else if (destination <= 0 || destination >= graph1.getSize()) {
+            } else if (destination <= 0 || destination >graph1.getSize()) {
                 System.out.println("Invalid input!");
                 continue;
             }
@@ -69,7 +63,6 @@ public class ShortestPath {
         for(List<Integer> path: paths){
             if(path.size()==min){
                 for (int i = 0; i < path.size() - 1; i++) {
-
                     System.out.print(path.get(i) + "->");
                 }
                 System.out.println(path.get(path.size() - 1));
