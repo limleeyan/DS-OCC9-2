@@ -8,7 +8,7 @@ public class FortressAttackSimulation {
     public FortressAttackSimulation() {
         FortressAttack weightedGraph = new FortressAttack();
 
-        ImageIcon graphImage = new ImageIcon("src/main/java/def/GraphImage.PNG");
+        ImageIcon graphImage = new ImageIcon("src/main/resources/GraphImage.PNG");
         JOptionPane.showMessageDialog(null,null,"Graph",JOptionPane.INFORMATION_MESSAGE,graphImage);
 
         weightedGraph.initializeGraph(11);

@@ -9,7 +9,7 @@ public class ShortestPath {
     public ShortestPath() {
         Graph<Integer> graph1 = createGraph();
 
-        ImageIcon graphImage = new ImageIcon("src/main/java/def/GraphImage.PNG");
+        ImageIcon graphImage = new ImageIcon("src/main/resources/GraphImage.PNG");
         JOptionPane.showMessageDialog(null,null,"Graph",JOptionPane.INFORMATION_MESSAGE,graphImage);
 
         System.out.println("\nThe number of vertices in graph: " + graph1.getSize());

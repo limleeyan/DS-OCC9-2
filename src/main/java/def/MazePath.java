@@ -90,7 +90,7 @@ class Maze {
 
 public class MazePath {
     public MazePath() {
-        int[][] maze = ReadMatrixFromFile.matrixFile2IntArray("src\\main\\java\\def\\CaoCaoMaze.txt");
+        int[][] maze = ReadMatrixFromFile.matrixFile2IntArray("src\\main\\resources\\CaoCaoMaze.txt");
         //int[][] maze = ReadMatrixFromFile.matrixFile2IntArray("C:\\Users\\eefei\\Desktop\\SEM2 DS Assignment\\DS-OCC9-2-1\\src\\main\\java\\def\\CaoCaoMaze.txt");
     
 

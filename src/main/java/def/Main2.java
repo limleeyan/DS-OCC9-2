@@ -4,9 +4,9 @@ import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 
 public class Main2 {
+    static ImageIcon icon = new ImageIcon("src\\main\\resources\\logo.jpg");
     public static void main(String[] args) throws Exception {
         String[] options = {"1", "2", "Exit"};
-        //ImageIcon icon = new ImageIcon("src\\main\\java\\def\\img\\icon.png");
 
         do {
             var select = JOptionPane.showOptionDialog(null,
@@ -14,7 +14,7 @@ public class Main2 {
                     "Three Kingdoms",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
-                    null,
+                    icon,
                     options,
                     options[0]);
 
@@ -28,7 +28,7 @@ public class Main2 {
                             "Three Kingdoms",
                             JOptionPane.DEFAULT_OPTION,
                             JOptionPane.INFORMATION_MESSAGE,
-                            null,
+                            icon,
                             close,
                             close[0]);
                     System.exit(0);
@@ -55,7 +55,7 @@ public class Main2 {
                     "Basic Features",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
-                    null,
+                    icon,
                     options,
                     options[0]);
 
@@ -68,18 +68,7 @@ public class Main2 {
                 case 5 -> new CaesarCipher();
                 case 6 -> new MatrixCluster();
                 case 7 -> new MazePath();
-                case 8 -> {
-                    String[] close = {"close"};
-                    JOptionPane.showOptionDialog(null,
-                            "See you again!",
-                            "Three Kingdoms",
-                            JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.INFORMATION_MESSAGE,
-                            null,
-                            close,
-                            close[0]);
-                    return;
-                }
+                case 8 -> { return; }
             }
         } while (true);
     }
@@ -98,7 +87,7 @@ public class Main2 {
                     "Advanced Features",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
-                    null,
+                    icon,
                     options,
                     options[0]);
 
@@ -107,18 +96,7 @@ public class Main2 {
                 case 1 -> new TextConverterSecure();
                 case 2 -> new FoodHarvestingI();
                 case 3 -> new FortressAttackSimulation();
-                case 4 -> {
-                    String[] close = {"close"};
-                    JOptionPane.showOptionDialog(null,
-                            "See you again!",
-                            "Three Kingdoms",
-                            JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.INFORMATION_MESSAGE,
-                            null,
-                            close,
-                            close[0]);
-                    return;
-                }
+                case 4 -> { return; }
             }
         } while (true);
     }

@@ -13,7 +13,7 @@ public class FoodHarvesting {
     public FoodHarvesting() {
         insertGraph();
 
-        ImageIcon graphImage = new ImageIcon("src/main/java/def/GraphImage.PNG");
+        ImageIcon graphImage = new ImageIcon("src/main/resources/GraphImage.PNG");
         JOptionPane.showMessageDialog(null,null,"Graph",JOptionPane.INFORMATION_MESSAGE,graphImage);
 
         while (true) {
@@ -65,7 +65,7 @@ public class FoodHarvesting {
         insertGraph();
         nodesWithoutFood.clear();
 
-        ImageIcon graphImage = new ImageIcon("src/main/java/def/GraphImage.PNG");
+        ImageIcon graphImage = new ImageIcon("src/main/resources/GraphImage.PNG");
         JOptionPane.showMessageDialog(null,null,"Graph",JOptionPane.INFORMATION_MESSAGE,graphImage);
 
         System.out.print("\nEnter node without food (0 to proceed, -1 to exit feature): ");
