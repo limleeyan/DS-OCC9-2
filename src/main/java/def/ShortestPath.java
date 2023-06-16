@@ -8,15 +8,16 @@ public class ShortestPath {
     public ShortestPath() {
         Graph<Integer> graph1 = createGraph();
         System.out.println("\nThe number of vertices in graph: " + graph1.getSize());
-
-        System.out.println("Vertices: ");
-        for (int i = 0; i < graph1.getSize(); i++) {
-            System.out.print(i + ": " + graph1.getVertex(i) + "\t");
-        }
         System.out.println();
+//
+//        System.out.println("Vertices: ");
+//        for (int i = 0; i < graph1.getSize(); i++) {
+//            System.out.print(i + "- " + graph1.getVertex(i) + "\t");
+//        }
+//        System.out.println();
 
         while (true) {
-            System.out.print("Enter the base camp for the enemy base camp (Press -1 exit to Basic Feature Menu): ");
+            System.out.print("Enter the base camp for the enemy base camp (Press -1 exit to exit feature): ");
             destination = sc.nextInt();
             if (destination == -1) {
                 break;

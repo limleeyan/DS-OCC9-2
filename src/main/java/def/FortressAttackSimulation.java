@@ -35,10 +35,18 @@ public class FortressAttackSimulation {
 
         weightedGraph.addWeightedEdge(9, 10, 18, "Flat Road");
 
-        System.out.println("\nFortress Attack Simulation");
-        System.out.print("Enter the destination (enemy fortress) node: ");
-        int enemyFortress = sc.nextInt();
-
-        weightedGraph.shortestTime(enemyFortress);
+        while (true) {
+            System.out.println("\nFortress Attack Simulation");
+            System.out.print("Enter the destination (enemy fortress) node, (Enter -1 to exit feature): ");
+            int enemyFortress = sc.nextInt();
+            if(enemyFortress==-1){
+                break;
+            }
+            else if(enemyFortress<=0 || enemyFortress>10){
+                System.out.println("Invalid Input!");
+                continue;
+            }
+            weightedGraph.shortestTime(enemyFortress);
+        }
     }
 }
