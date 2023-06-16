@@ -1,4 +1,5 @@
 package def;
+import javax.swing.*;
 import java.util.*;
 public class ShortestPath {
     static Scanner sc = new Scanner(System.in);
@@ -7,6 +8,10 @@ public class ShortestPath {
 
     public ShortestPath() {
         Graph<Integer> graph1 = createGraph();
+
+        ImageIcon graphImage = new ImageIcon("src/main/java/def/GraphImage.PNG");
+        JOptionPane.showMessageDialog(null,null,"Graph",JOptionPane.INFORMATION_MESSAGE,graphImage);
+
         System.out.println("\nThe number of vertices in graph: " + graph1.getSize());
         System.out.println();
 //
