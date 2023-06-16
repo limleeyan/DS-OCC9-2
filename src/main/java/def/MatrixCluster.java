@@ -5,7 +5,7 @@ public class MatrixCluster {
         
         MatrixCluster2 cluster = new MatrixCluster2();
         char[][] grid = ReadMatrixFromFile.matrixFile2CharArray("src\\main\\java\\def\\BattleshipMatrix.txt");
-
+        
         // for (int i = 0; i < grid.length; i++) {
         //     for (int j = 0; j < grid[i].length; j++) {
         //         System.out.print(grid[i][j] + " ");
