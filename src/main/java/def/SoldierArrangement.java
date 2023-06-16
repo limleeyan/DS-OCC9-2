@@ -2,8 +2,10 @@ package def;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 
 public class SoldierArrangement {
+    static ImageIcon icon = new ImageIcon("src\\main\\resources\\logo.jpg");
     static ArrayList<TreeNode> generals = new ArrayList<>();
     static ArrayList<TreeNode> sortedPolitics = new ArrayList<>();
     static ArrayList<TreeNode> sortedIntelligence = new ArrayList<>();
@@ -25,7 +27,7 @@ public class SoldierArrangement {
                     "Soldier Arrangement",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
-                    null,
+                    icon,
                     options1,
                     options1[0]);
             switch (select) {
@@ -33,18 +35,7 @@ public class SoldierArrangement {
                 case 1 -> sortedGeneralAbilities();
                 case 2 -> viewGeneralAbilities();
                 case 3 -> searchByAbilityValue();
-                case 4 -> {
-                    String[] close = {"close"};
-                    JOptionPane.showOptionDialog(null,
-                            "See you again!",
-                            "Three Kingdoms",
-                            JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.INFORMATION_MESSAGE,
-                            null,
-                            close,
-                            close[0]);
-                    return;
-                }
+                case 4 -> { return; }
             }
         } while (true);
     }
@@ -70,10 +61,11 @@ public class SoldierArrangement {
                 "Soldier Arrangement",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
-                null,
+                icon,
                 options2,
                 options2[0]);
         int choice = sChoice + 1;
+        String ability = "";
 
         String[] options3 = {"S", "A", "B", "C"};
         var sTier = JOptionPane.showOptionDialog(null,
@@ -81,7 +73,7 @@ public class SoldierArrangement {
                 "Soldier Arrangement",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
-                null,
+                icon,
                 options3,
                 options3[0]);
         String tier = "";
@@ -91,7 +83,16 @@ public class SoldierArrangement {
             case 2 -> tier = "B";
             case 3 -> tier = "C";
         }
+        switch (choice){
+            case 1 -> ability = "Strength";
+            case 2 -> ability = "Leadership";
+            case 3 -> ability = "Intelligence";
+            case 4 -> ability = "Politic";
+            case 5 -> ability = "Hitpoint";
+        }
+
         ArrayList<TreeNode> soldiers = suggestGeneralsByAbility(choice, tier);
+        System.out.printf("%s Team in %s\n", tier,ability);
         System.out.println("Suggested Generals: ");
         for (TreeNode soldier : soldiers) {
             System.out.println(soldier.getArmyData().getName());
@@ -112,7 +113,7 @@ public class SoldierArrangement {
                     "Sorted General Abilities",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
-                    null,
+                    icon,
                     options2,
                     options2[0]);
             switch (choice) {
@@ -156,26 +157,21 @@ public class SoldierArrangement {
                     }
                     System.out.println();
                 }
-                case 5 -> {
-                    String[] close = {"close"};
-                    JOptionPane.showOptionDialog(null,
-                            "See you again!",
-                            "Three Kingdoms",
-                            JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.INFORMATION_MESSAGE,
-                            null,
-                            close,
-                            close[0]);
-                    return;
-                }
+                case 5 -> { return; }
             }
         } while(true);
     }
 
     public static void viewGeneralAbilities() {
         do {
-            var name = JOptionPane.showInputDialog("Enter the value you want to search for: ");
-            if (name.equals("Exit")) {
+            var name = JOptionPane.showInputDialog(null,
+                    "Enter the value you want to search for: ",
+                    "View General Abilities",
+                    JOptionPane.QUESTION_MESSAGE,
+                    icon,
+                    null,
+                    null);
+            if (name == null || name.equals("Exit") || name.equals("")) {
                 return;
             }
             boolean search = false;
@@ -203,13 +199,22 @@ public class SoldierArrangement {
                 "Soldier Arrangement",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
-                null,
+                icon,
                 options2,
                 options2[0]);
         int choice = sChoice + 1;
 
-        var sTarget = JOptionPane.showInputDialog("Enter the value you want to search for: ");
-        int target = Integer.parseInt(sTarget);
+        var sTarget = JOptionPane.showInputDialog(null,
+                "Enter the value you want to search for: ",
+                "Search by Ability Value",
+                JOptionPane.QUESTION_MESSAGE,
+                icon,
+                null,
+                null);
+        if(sTarget == null || sTarget.equals("")){
+            return;
+        }
+        int target = Integer.parseInt((String) sTarget);
 
         // binary search
         int low = 0;

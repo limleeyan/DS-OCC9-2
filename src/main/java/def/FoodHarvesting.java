@@ -1,5 +1,6 @@
 package def;
 
+import javax.swing.*;
 import java.util.*;
 
 public class FoodHarvesting {
@@ -11,6 +12,9 @@ public class FoodHarvesting {
 
     public FoodHarvesting() {
         insertGraph();
+
+        ImageIcon graphImage = new ImageIcon("src/main/resources/GraphImage.PNG");
+        JOptionPane.showMessageDialog(null,null,"Graph",JOptionPane.INFORMATION_MESSAGE,graphImage);
 
         while (true) {
             nodesWithoutFood.clear();
@@ -60,6 +64,9 @@ public class FoodHarvesting {
     public FoodHarvesting(boolean isFood){
         insertGraph();
         nodesWithoutFood.clear();
+
+        ImageIcon graphImage = new ImageIcon("src/main/resources/GraphImage.PNG");
+        JOptionPane.showMessageDialog(null,null,"Graph",JOptionPane.INFORMATION_MESSAGE,graphImage);
 
         System.out.print("\nEnter node without food (0 to proceed, -1 to exit feature): ");
         int input;

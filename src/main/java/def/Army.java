@@ -26,7 +26,7 @@ public class Army {
     }
     static void fillArmy(){
         try {
-            Scanner in = new Scanner(new FileInputStream("src/main/java/def/ArmyList.txt"));
+            Scanner in = new Scanner(new FileInputStream("src/main/resources/ArmyList.txt"));
             while (in.hasNextLine()){
                 String str = in.nextLine();
                 String[] data = str.split(",");

@@ -1,11 +1,15 @@
 package def;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class FortressAttackSimulation {
     static Scanner sc = new Scanner(System.in);
     public FortressAttackSimulation() {
         FortressAttack weightedGraph = new FortressAttack();
+
+        ImageIcon graphImage = new ImageIcon("src/main/resources/GraphImage.PNG");
+        JOptionPane.showMessageDialog(null,null,"Graph",JOptionPane.INFORMATION_MESSAGE,graphImage);
 
         weightedGraph.initializeGraph(11);
 
