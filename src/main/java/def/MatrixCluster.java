@@ -16,6 +16,7 @@ public class MatrixCluster {
 
 
         int result = cluster.numShips(grid);
+        System.out.println("\nRed Cliff on Fire");
         System.out.println("Number of cluster: " + result);
 
     }

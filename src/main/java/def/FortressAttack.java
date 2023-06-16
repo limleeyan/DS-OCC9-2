@@ -7,10 +7,6 @@ public class FortressAttack {
     private List<List<WeightedEdge>> adj;
 
     public FortressAttack() {
-//        V = vertices;
-//        adj = new ArrayList<>(vertices);
-//        for (int i = 0; i < vertices; ++i)
-//            adj.add(new ArrayList<>());
 
     }
 
@@ -63,7 +59,7 @@ public class FortressAttack {
         }
 
         for (int general = 0; general < 3; general++) {
-            System.out.println("Shortest time for " + generalNames[general] + " to reach the enemy fortress from Node 1: " + time[fortress][general] + " hours");
+            System.out.printf("Shortest time for %s to reach the enemy fortress from Node 1: %.2f hours\n", generalNames[general], time[fortress][general]);
             System.out.print("Shortest path: ");
             printPath(prev, 1, fortress, general);
             System.out.println();

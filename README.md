@@ -36,7 +36,7 @@ Subquestion 7: Red Cliff on Fire (Ee Fei)
 Subquestion 8: Cao Cao at Hua Rong Road (Ee Fei)
 - Cell.java
 - CaoCaoMaze.txt
-- MazePath2.java
+- MazePath.java
 
 ### Additional Features
 Dynamic Arrow Borrowing: (Lee Yan)
@@ -49,6 +49,8 @@ More secure encryption: (Lee Yan)
 
 Food Harvesting I: (Wen Thing)
 - FoodHarvestingI.java
+- FoodHarvesting.java
+- SoldierArrangement.java
 
 Attack Simulation I: (Wen Teng)
 - FortressAttack.java

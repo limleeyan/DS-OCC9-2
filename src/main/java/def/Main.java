@@ -1,5 +1,9 @@
 package def;
 
+/**
+ * Please use Main2.java instead of this file.
+ * This file is currently no longer being used, or edited.
+
 import java.util.Scanner;
 
 public class Main {
@@ -74,3 +78,6 @@ public class Main {
         } while (option != -1);
     }
 }
+
+
+ */

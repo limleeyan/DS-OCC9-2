@@ -2,10 +2,8 @@ package def;
 
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
-import java.util.Scanner;
 
 public class Main2 {
-    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
         String[] options = {"1", "2", "Exit"};
         //ImageIcon icon = new ImageIcon("src\\main\\java\\def\\img\\icon.png");
