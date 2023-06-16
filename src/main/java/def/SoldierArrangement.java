@@ -74,6 +74,7 @@ public class SoldierArrangement {
                 options2,
                 options2[0]);
         int choice = sChoice + 1;
+        String ability = "";
 
         String[] options3 = {"S", "A", "B", "C"};
         var sTier = JOptionPane.showOptionDialog(null,
@@ -91,7 +92,16 @@ public class SoldierArrangement {
             case 2 -> tier = "B";
             case 3 -> tier = "C";
         }
+        switch (choice){
+            case 1 -> ability = "Strength";
+            case 2 -> ability = "Leadership";
+            case 3 -> ability = "Intelligence";
+            case 4 -> ability = "Politic";
+            case 5 -> ability = "Hitpoint";
+        }
+
         ArrayList<TreeNode> soldiers = suggestGeneralsByAbility(choice, tier);
+        System.out.printf("%s Team in %s\n", tier,ability);
         System.out.println("Suggested Generals: ");
         for (TreeNode soldier : soldiers) {
             System.out.println(soldier.getArmyData().getName());

@@ -56,11 +56,27 @@ public class FoodHarvestingI {
         // let user choose generals
         System.out.println("1. Xu Sheng\t\t2. Zhu Ge Jin\t3. Lu Su\t\t4. Tai Shi Ci\t5. Xiao Qiao\n" +
                 "6. Da Qiao\t\t7. Zhou Tai\t\t8. Gan Ning\t\t9. Lu Meng\t\t10. Huang Gai");
-        System.out.print("Please select 3 generals by entering their index: ");
+
+        ArrayList<Integer> selectedIndex = new ArrayList<>();
         int[] index = new int[3];
-        for (int i=0; i<index.length; i++){
-            index[i] = sc2.nextInt();
+        boolean isSame = false;
+        while (true) {
+            System.out.print("Please select 3 generals by entering their index: ");
+            for (int i = 0; i < index.length; i++) {
+                index[i] = sc2.nextInt();
+            }
+
+            if (index[0]==index[1] || index[0]==index[2] || index[1]==index[2])
+                isSame = true;
+            else
+                isSame = false;
+
+            if (!isSame)
+                break;
+
+            System.out.println("You selected the same Generals! Please select again!");
         }
+
 
         ArrayList<TreeNode> selectedGenerals = new ArrayList<>();
         for (int i: index){
