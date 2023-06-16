@@ -43,6 +43,7 @@ public class FortressAttackSimulation {
             System.out.println("\nFortress Attack Simulation");
             System.out.print("Enter the destination (enemy fortress) node, (Enter -1 to exit feature): ");
             int enemyFortress = sc.nextInt();
+
             if(enemyFortress==-1){
                 break;
             }

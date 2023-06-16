@@ -24,6 +24,7 @@ public class ShortestPath {
                 System.out.println("Invalid input!");
                 continue;
             }
+
             //Find all possible paths using BFS
             paths = new ArrayList<>();
             breadthFirstSearch(graph1, 1, new ArrayList<>());
