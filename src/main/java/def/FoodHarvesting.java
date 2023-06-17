@@ -18,7 +18,7 @@ public class FoodHarvesting {
 
         while (true) {
             nodesWithoutFood.clear();
-            System.out.print("Enter node(s) without food (0 to proceed, -1 to exit feature): ");
+            System.out.print("\nEnter node(s) without food (0 to proceed, -1 to exit feature): ");
             String inputLine = sc.nextLine();
             String[] inputs = inputLine.split("\\s+");
 
