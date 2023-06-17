@@ -62,5 +62,9 @@ Attack Simulation I: (Wen Teng)
 Extra Algorithm Implementation: (Ee Fei)
 - MazePath.java (A* algorithm, Dijkstra algorithm)
 
-(very basic) GUI: (Jonas)
+GUI: (Jonas)
+_logo and images by the whole team_
 - Main2.java
+- SoldierArrangement.java
+- FoodHarvesting/I.java
+- FortressAttackSimulation.java
