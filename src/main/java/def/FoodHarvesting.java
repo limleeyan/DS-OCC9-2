@@ -117,13 +117,6 @@ public class FoodHarvesting {
             }
         }
 
-//        System.out.print("\nEnter node without food (0 to proceed, -1 to exit feature): ");
-//        int input;
-//        while ((input = sc2.nextInt()) != 0 && input!=-1) {
-//            if (input != 0)
-//                nodesWithoutFood.add(input);
-//        }
-
         // if all nodes contain no food
         ArrayList<Integer> list = new ArrayList<>();
         for (int i = 1; i <= 10; i++) {
