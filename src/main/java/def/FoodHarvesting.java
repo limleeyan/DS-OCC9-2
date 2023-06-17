@@ -18,7 +18,7 @@ public class FoodHarvesting {
 
         while (true) {
             nodesWithoutFood.clear();
-            System.out.print("\nEnter node(s) without food (-1 to exit feature): ");
+            System.out.print("\nEnter node(s) without food (0 to proceed, -1 to exit feature): ");
             String inputLine = sc.nextLine();
             String[] inputs = inputLine.split("\\s+");
 
@@ -27,11 +27,11 @@ public class FoodHarvesting {
             for (String input : inputs) {
                 try {
                     int value = Integer.parseInt(input);
-                    if (value == -1) {
+                    if (value == -1 || value == 0) {
                         validInput = true;
                         break;
-                    } else if (value < 1 || value > 10) {
-                        System.out.println("Invalid input! Please enter a value between 1 and 10.");
+                    } else if (value < 0 || value > 10) {
+                        System.out.println("Invalid input! Please enter a value between 0 and 10.");
                         validInput = false;
                     } else {
                         nodesWithoutFood.add(value);
@@ -91,7 +91,7 @@ public class FoodHarvesting {
 
         boolean validInput = false;
         while (!validInput) {
-            System.out.print("\nEnter node(s) without food (-1 to exit feature): ");
+            System.out.print("\nEnter node(s) without food (0 to proceed): ");
             String inputLine = sc.nextLine();
             String[] inputs = inputLine.split("\\s+");
 
@@ -100,13 +100,11 @@ public class FoodHarvesting {
             for (String input : inputs) {
                 try {
                     int value = Integer.parseInt(input);
-                    if (value == -1) {
-                        return;
-                    } else if (value < 1 || value > 10) {
-                        System.out.println("Invalid input! Please enter a value between 1 and 10.");
+                    if (value < 0 || value > 10) {
+                        System.out.println("Invalid input! Please enter a value between 0 and 10.");
                         validInput = false;
                         break;
-                    } else {
+                    } else if (value!=0) {
                         nodesWithoutFood.add(value);
                     }
                 } catch (NumberFormatException e) {
