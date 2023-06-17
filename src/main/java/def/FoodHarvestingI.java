@@ -76,10 +76,8 @@ public class FoodHarvestingI {
                 continue; // Prompt the user to enter again
             }
 
-            if (index[0] == index[1] || index[0] == index[2] || index[1] == index[2])
-                isSame = true;
-            else
-                isSame = false;
+            if (index[0] == index[1] || index[0] == index[2] || index[1] == index[2]) isSame = true;
+            else isSame = false;
 
             if (!isSame)
                 break;
