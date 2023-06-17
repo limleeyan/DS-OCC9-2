@@ -6,10 +6,6 @@ public class FortressAttack {
     private int V;
     private List<List<WeightedEdge>> adj;
 
-    public FortressAttack() {
-
-    }
-
     public void initializeGraph(int vertices) {
         V = vertices;
         adj = new ArrayList<>(vertices);
@@ -34,7 +30,7 @@ public class FortressAttack {
             Arrays.fill(time[i], Double.MAX_VALUE);
             Arrays.fill(prev[i], -1);
         }
-
+        //0=Cavalry 1=Archer 2=Infantry
         for (int general = 0; general < 3; general++) {
             PriorityQueue<Node> pq = new PriorityQueue<>(V, Comparator.comparingDouble(node -> node.time));
             time[1][general] = 0;
@@ -42,20 +38,20 @@ public class FortressAttack {
 
             while (!pq.isEmpty()) {
                 Node node = pq.poll();
-                int u = node.vertex;
+                int ver = node.vertex;
                 int currentGeneral = node.general;
 
-                for (WeightedEdge edge : adj.get(u)) {
-                    int v = edge.destination;
+                for (WeightedEdge edge : adj.get(ver)) {
+                    int destination = edge.destination;
                     int distance = edge.distance;
                     String roadType = edge.roadType;
                     double speed = getGeneralSpeed(roadType, currentGeneral);
 
                     double travelTime = distance / speed;
-                    if (time[u][currentGeneral] + travelTime < time[v][currentGeneral]) {
-                        time[v][currentGeneral] = time[u][currentGeneral] + travelTime;
-                        prev[v][currentGeneral] = u;
-                        pq.offer(new Node(v, time[v][currentGeneral], currentGeneral));
+                    if (time[ver][currentGeneral] + travelTime < time[destination][currentGeneral]) {
+                        time[destination][currentGeneral] = time[ver][currentGeneral] + travelTime;
+                        prev[destination][currentGeneral] = ver;
+                        pq.offer(new Node(destination, time[destination][currentGeneral], currentGeneral));
                     }
                 }
             }
@@ -68,7 +64,6 @@ public class FortressAttack {
             System.out.println();
         }
     }
-
 
     private double getGeneralSpeed(String roadType, int general) {
         switch (roadType) {
@@ -128,7 +123,6 @@ public class FortressAttack {
             }
         }
     }
-
 }
 
 
